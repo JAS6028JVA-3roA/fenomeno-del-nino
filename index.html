@@ -1,1008 +1,831 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#123b78">
-<meta name="description" content="Una guía educativa e interactiva para conocer el Fenómeno del Niño, sus causas, impactos y medidas de prevención.">
-<title>El Fenómeno del Niño | Un fenómeno, muchas consecuencias</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explora de manera interactiva qué es el Fenómeno del Niño, cómo se produce, sus consecuencias en el Perú y cómo prepararnos.">
+<meta name="theme-color" content="#071d3b">
+<meta name="color-scheme" content="light">
+<title>El Niño | Un fenómeno, muchas consecuencias</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{
-  --navy:#123b78;
-  --blue:#1765b5;
-  --sky:#35b8ea;
-  --pale:#bcebff;
-  --yellow:#ffd447;
-  --orange:#f07835;
-  --green:#48a985;
-  --ink:#18304d;
-  --muted:#5c7088;
-  --paper:#f5fbff;
-  --white:#fff;
-  --shadow:0 18px 50px #123b7818;
+ --deep:#071d3b;--navy:#123b78;--blue:#1765b5;--sky:#38bdf8;--teal:#21b6c7;
+ --pale:#eaf6ff;--paper:#f5f9fd;--white:#fff;--ink:#12243a;--muted:#5e7188;
+ --line:#dce8f3;--shadow:0 18px 55px rgba(7,29,59,.12);
+ --c1:#1765b5;--c2:#35b8ea;--c3:#16a085;--c4:#8064c8;--c5:#e65b36;--c6:#32965d;--c7:#52657d;
 }
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-
-body{
-  margin:0;
-  font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  color:var(--ink);
-  background:var(--paper);
-  line-height:1.65;
-}
-
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}
 button,a{font:inherit}
 button{cursor:pointer}
-
-.wrap{width:min(1120px,92%);margin:auto}
-
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:#ffffffeb;
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid #dcebf5;
-  box-shadow:0 4px 18px #123b780c;
-}
-
-.topbar-inner{
-  height:68px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-}
-
-.brand{
-  font-family:"Fraunces",Georgia,serif;
-  font-weight:700;
-  letter-spacing:.03em;
-  color:var(--navy);
-  text-decoration:none;
-  font-size:1.15rem;
-}
-
-.brand span{color:var(--sky)}
-
-.small-nav{
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-
-.small-nav button{
-  border:0;
-  background:transparent;
-  color:var(--navy);
-  font-weight:750;
-  padding:9px 12px;
-  border-radius:12px;
-  transition:background .2s ease,color .2s ease,transform .2s ease;
-}
-
-.small-nav button:hover{
-  background:#e8f7ff;
-  transform:translateY(-1px);
-}
-
-.hero{
-  min-height:680px;
-  display:grid;
-  align-items:center;
-  overflow:hidden;
-  position:relative;
-  background:
-    radial-gradient(ellipse at 78% 36%,#bcebff 0,transparent 38%),
-    radial-gradient(circle at 10% 88%,#d4f5e9 0,transparent 32%),
-    radial-gradient(circle at 92% 14%,#ffe8a3 0,transparent 26%),
-    linear-gradient(125deg,#e4f5ff 0%,#fff 54%,#eef9ff 100%);
-  border-bottom:1px solid #d9ecf8;
-}
-
-.hero:before,.hero:after{
-  content:"";
-  position:absolute;
-  border-radius:50%;
-  border:1px solid #35b8ea38;
-  width:460px;
-  height:460px;
-  right:-120px;
-  bottom:-230px;
-  animation:ringDrift 18s ease-in-out infinite alternate;
-  pointer-events:none;
-}
-
-.hero:after{
-  width:600px;
-  height:600px;
-  right:-190px;
-  bottom:-300px;
-  animation-delay:-7s;
-}
-
-.hero-grid{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  align-items:center;
-  gap:28px;
-  padding:70px 0;
-  position:relative;
-  z-index:2;
-}
-
-.eyebrow{
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-  padding:7px 14px;
-  border-radius:99px;
-  background:#fff;
-  color:var(--blue);
-  font-weight:800;
-  font-size:.82rem;
-  box-shadow:0 5px 18px #123b7812;
-  border:1px solid #d9eef9;
-  letter-spacing:.05em;
-}
-
-.hero h1{
-  font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
-  font-size:clamp(2.7rem,6vw,5.4rem);
-  line-height:.98;
-  letter-spacing:-.05em;
-  color:var(--navy);
-  margin:22px 0 14px;
-  max-width:700px;
-  text-wrap:balance;
-}
-
-.hero h1 span{
-  display:block;
-  font-family:"Fraunces",Georgia,serif;
-  font-weight:700;
-  letter-spacing:-.035em;
-  background:linear-gradient(90deg,#123b78 0%,#1765b5 48%,#35a9dc 100%);
-  background-clip:text;
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.hero p{
-  font-size:1.13rem;
-  color:var(--muted);
-  max-width:570px;
-  line-height:1.8;
-  margin:0;
-}
-
-.hero-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:28px;
-}
-
-.primary,.secondary{
-  border:0;
-  border-radius:15px;
-  padding:14px 23px;
-  font-weight:850;
-  box-shadow:0 9px 22px #123b7820;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-}
-
-.primary{
-  background:var(--navy);
-  color:white;
-  min-width:150px;
-  position:relative;
-  overflow:hidden;
-  transition:transform .25s,box-shadow .25s,background .25s;
-}
-
-.primary:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  transform:translateX(-120%);
-  background:linear-gradient(100deg,transparent,#ffffff45,transparent);
-  transition:transform .65s;
-}
-
-.primary:hover{
-  background:var(--blue);
-  transform:translateY(-4px);
-  box-shadow:0 15px 28px #123b7835;
-}
-
-.primary:hover:after{
-  transform:translateX(120%);
-}
-
-.secondary{
-  background:white;
-  color:var(--navy);
-  border:1px solid #d6e8f4;
-  transition:transform .25s,border-color .25s,box-shadow .25s;
-}
-
-.secondary:hover{
-  transform:translateY(-3px);
-  border-color:#8bd8f3;
-  box-shadow:0 12px 24px #123b7815;
-}
-
-.hero-art{
-  min-height:410px;
-  display:grid;
-  place-items:center;
-  position:relative;
-  isolation:isolate;
-}
-
-.hero-art:before{
-  content:"";
-  position:absolute;
-  width:390px;
-  height:390px;
-  border-radius:50%;
-  background:radial-gradient(circle,#35b8ea28 0 42%,transparent 70%);
-  filter:blur(8px);
-  z-index:-1;
-}
-
-.earth-wrap{
-  width:min(340px,75vw);
-  aspect-ratio:1;
-  position:relative;
-  display:grid;
-  place-items:center;
-  animation:float 5.5s ease-in-out infinite;
-}
-
-.earth{
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  overflow:hidden;
-  position:relative;
-  border:1.5px solid #ffffffc4;
-  box-shadow:
-    inset -24px -22px 45px #082c60aa,
-    inset 10px 10px 24px #ffffff45,
-    0 35px 65px #1765b544,
-    0 0 0 14px #ffffff66;
-}
-
-.earth-svg{
-  width:100%;
-  height:100%;
-  display:block;
-}
-
-.earth-clouds{
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  background:
-    radial-gradient(ellipse 35% 11% at 30% 25%, rgba(255,255,255,.58), transparent 72%),
-    radial-gradient(ellipse 40% 10% at 68% 48%, rgba(255,255,255,.46), transparent 72%),
-    radial-gradient(ellipse 30% 10% at 45% 75%, rgba(255,255,255,.5), transparent 72%);
-  pointer-events:none;
-  animation:cloudDrift 14s ease-in-out infinite alternate;
-}
-
-.earth-shade{
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  background:linear-gradient(115deg,transparent 38%,#061e4c55 80%);
-  pointer-events:none;
-}
-
-.orbit{
-  position:absolute;
-  width:420px;
-  height:165px;
-  border:2px solid #35b8ea77;
-  border-radius:50%;
-  transform:rotate(-22deg);
-  box-shadow:0 0 24px #35b8ea20;
-  animation:orbitPulse 7s ease-in-out infinite;
-  pointer-events:none;
-}
-
-.sun{
-  position:absolute;
-  width:76px;
-  height:76px;
-  background:radial-gradient(circle at 35% 35%, #ffe680 0%, var(--yellow) 65%, #f59e0b 100%);
-  border-radius:50%;
-  right:7%;
-  top:5%;
-  box-shadow:0 0 45px #ffd44788;
-  animation:sunGlow 4s ease-in-out infinite;
-  pointer-events:none;
-}
-
-.wave{
-  position:absolute;
-  font-size:2.2rem;
-  opacity:.85;
-  filter:drop-shadow(0 5px 9px #1765b533);
-  pointer-events:none;
-}
-
-.wave.one{left:0;top:19%}
-.wave.two{right:0;bottom:15%}
-
-.hero-tag{
-  position:absolute;
-  z-index:3;
-  padding:9px 13px;
-  border:1px solid #ffffffd9;
-  border-radius:14px;
-  background:#ffffffe6;
-  box-shadow:0 12px 28px #123b7818;
-  color:var(--navy);
-  font-size:.78rem;
-  font-weight:850;
-  backdrop-filter:blur(8px);
-  animation:tagFloat 5s ease-in-out infinite;
-}
-
-.hero-tag small{
-  display:block;
-  color:var(--muted);
-  font-size:.68rem;
-  font-weight:650;
-}
-
-.hero-tag.ocean{left:-1%;bottom:18%}
-.hero-tag.air{right:-2%;top:20%;animation-delay:-2.5s}
-
-.section{padding:82px 0}
-.section-head{text-align:center;max-width:760px;margin:0 auto 34px}
-.kicker{color:var(--blue);font-size:.8rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
-
-.section h2{
-  font-family:"Fraunces",Georgia,serif;
-  font-size:clamp(2rem,4vw,3.1rem);
-  line-height:1.1;
-  color:var(--navy);
-  letter-spacing:-.03em;
-  margin:10px 0;
-}
-
-.section-head p{color:var(--muted);margin:12px auto 0}
-
-.menu-section{background:white}
-.bubble-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-
-.bubble{
-  min-height:190px;
-  border:1px solid #e1edf5;
-  background:var(--card-grad, linear-gradient(145deg,#fff,#f1faff));
-  border-radius:var(--card-rad, 25px);
-  padding:23px;
-  text-align:left;
-  box-shadow:var(--shadow);
-  transition:.22s;
-  position:relative;
-  overflow:hidden;
-  color:var(--ink);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.bubble:hover{
-  transform:translateY(-6px);
-  box-shadow:0 22px 45px #123b7825;
-  border-color:#9bdcf5;
-}
-
-.bubble:after{
-  content:"";
-  position:absolute;
-  width:130px;
-  height:130px;
-  border-radius:50%;
-  right:-48px;
-  bottom:-62px;
-  background:var(--bubble,#bcebff);
-  opacity:.48;
-  pointer-events:none;
-}
-
-.bubble-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  margin-bottom:14px;
-  position:relative;
-  z-index:1;
-}
-
-.bubble .num{
-  width:42px;
-  height:42px;
-  display:grid;
-  place-items:center;
-  border-radius:var(--num-rad, 14px);
-  background:var(--bubble,#bcebff);
-  font-family:"Space Grotesk",sans-serif;
-  font-weight:950;
-  color:var(--navy);
-  flex-shrink:0;
-  box-shadow:inset 0 -2px 0 rgba(18,59,120,.12);
-}
-
-.bubble-tag{
-  font-size:.69rem;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  padding:4px 9px;
-  border-radius:99px;
-  background:rgba(255,255,255,.88);
-  color:var(--navy);
-  border:1px solid rgba(23,101,181,.16);
-  margin-right:22px;
-}
-
-.bubble strong{
-  font-family:var(--card-font, "Space Grotesk", sans-serif);
-  display:block;
-  font-size:1.1rem;
-  line-height:1.25;
-  color:var(--navy);
-  max-width:240px;
-  position:relative;
-  z-index:1;
-}
-
-.bubble small{
-  display:block;
-  color:var(--muted);
-  margin-top:7px;
-  position:relative;
-  z-index:1;
-}
-
-.bubble .arrow{
-  position:absolute;
-  right:20px;
-  top:22px;
-  font-size:1.2rem;
-  color:var(--blue);
-  z-index:2;
-  transition:transform .2s ease;
-}
-
-.bubble:hover .arrow{transform:translate(3px,-3px)}
-
-.bubble.q-1{--card-rad:28px;--num-rad:50%;--card-font:"Fraunces",Georgia,serif;--card-grad:linear-gradient(150deg,#ffffff 0%,#e8f7ff 100%)}
-.bubble.q-2{--card-rad:18px 28px 18px 28px;--num-rad:12px;--card-grad:linear-gradient(145deg,#ffffff 0%,#fff8dc 100%)}
-.bubble.q-3{--card-rad:24px;--num-rad:16px;--card-grad:linear-gradient(155deg,#ffffff 0%,#e6f7f0 100%)}
-.bubble.q-4{--card-rad:28px 18px 28px 18px;--num-rad:14px;--card-grad:linear-gradient(145deg,#ffffff 0%,#fff1e8 100%)}
-.bubble.q-5{--card-rad:22px;--num-rad:12px;--card-font:"Fraunces",Georgia,serif;--card-grad:linear-gradient(150deg,#ffffff 0%,#edf2ff 100%)}
-.bubble.q-6{--card-rad:26px;--num-rad:50%;--card-grad:linear-gradient(145deg,#ffffff 0%,#e6f7f0 100%)}
-.bubble.q-7{--card-rad:20px 28px 20px 28px;--num-rad:14px;--card-font:"Fraunces",Georgia,serif;--card-grad:linear-gradient(150deg,#ffffff 0%,#fff7dc 100%)}
-
-.facts{background:linear-gradient(180deg,#eaf8ff,#f7fcff)}
-.fact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.fact{background:white;border-radius:22px;padding:24px;box-shadow:var(--shadow);border:1px solid #e1eff8}
-.fact-icon{font-size:2rem}
-.fact h3{font-family:"Space Grotesk",sans-serif;color:var(--navy);margin:10px 0 6px}
-.fact p{margin:0;color:var(--muted)}
-.notice{margin-top:28px;padding:20px 22px;border-radius:18px;background:#fff7d9;border:1px solid #f4df88;color:#66521a}
-
-.footer{background:#102f60;color:#e9f6ff;padding:34px 0}
-.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.footer b{font-family:"Fraunces",Georgia,serif}
-.footer p{margin:5px 0;color:#c6d9ec}
-.footer a{color:#bcebff}
-
-.page{display:none;min-height:75vh;padding:54px 0 80px}
-.page.active{display:block;animation:fade .35s ease}
-.back{border:0;background:#e4f5ff;color:var(--navy);font-weight:850;border-radius:12px;padding:10px 15px;margin-bottom:28px;transition:background .2s ease,transform .2s ease}
-.back:hover{background:#d0eeff;transform:translateX(-2px)}
-
-.page-title{
-  background:var(--banner-bg, linear-gradient(120deg,#123b78,#1765b5));
-  color:white;
-  padding:36px;
-  border-radius:28px;
-  box-shadow:var(--shadow);
-  margin-bottom:28px;
-  position:relative;
-  overflow:hidden;
-}
-
-.page-title .kicker{color:var(--banner-kicker, #bcebff);position:relative;z-index:1}
-.page-title h1{
-  font-family:"Fraunces",Georgia,serif;
-  font-size:clamp(2rem,5vw,3.5rem);
-  line-height:1.08;
-  margin:8px 0;
-  position:relative;
-  z-index:1;
-}
-.page-title p{max-width:780px;color:#e0f4ff;margin:0;position:relative;z-index:1}
-
-.content-grid{display:grid;grid-template-columns:1fr 300px;gap:22px;align-items:start}
-.article-card,.side-card{background:white;border:1px solid #e0edf5;border-radius:22px;padding:26px;box-shadow:var(--shadow)}
-
-.article-card h2{font-size:1.52rem;margin:22px 0 8px;line-height:1.25}
-.article-card h2:first-child{margin-top:0}
-.article-card p,.article-card li{font-size:1rem;line-height:1.72}
-.article-card ul{padding-left:22px}
-
-.f-serif{font-family:"Fraunces",Georgia,serif}
-.f-geo{font-family:"Space Grotesk","Plus Jakarta Sans",sans-serif;letter-spacing:-.02em}
-.f-script{font-family:"Caveat",cursive;font-size:1.45em;font-weight:700;letter-spacing:.01em}
-.f-mono{font-family:"JetBrains Mono",monospace;font-size:.9em;letter-spacing:-.02em}
-.f-italic{font-family:"Fraunces",Georgia,serif;font-style:italic}
-
-.c-ocean{color:#0e5a8a}
-.c-amber{color:#9c5708}
-.c-emerald{color:#1b6b52}
-.c-coral{color:#b84314}
-.c-indigo{color:#2c4799}
-.c-teal{color:#0f6e78}
-.c-plum{color:#6b357d}
-
-.bg-ocean-soft{background:#eef8ff;border-left:4px solid #35b8ea;padding:12px 16px;border-radius:12px;margin:12px 0}
-.bg-amber-soft{background:#fff9e4;border-left:4px solid #f0a818;padding:12px 16px;border-radius:12px;margin:12px 0}
-.bg-emerald-soft{background:#eafaf3;border-left:4px solid #48a985;padding:12px 16px;border-radius:12px;margin:12px 0}
-.bg-coral-soft{background:#fff1ea;border-left:4px solid #f07835;padding:12px 16px;border-radius:12px;margin:12px 0}
-.bg-indigo-soft{background:#eef2ff;border-left:4px solid #4972d4;padding:12px 16px;border-radius:12px;margin:12px 0}
-.bg-teal-soft{background:#e8f8fa;border-left:4px solid #1fa2b0;padding:12px 16px;border-radius:12px;margin:12px 0}
-.bg-plum-soft{background:#f7efff;border-left:4px solid #9657ad;padding:12px 16px;border-radius:12px;margin:12px 0}
-
-.side-card{position:sticky;top:90px}
-.side-card h3{font-family:"Fraunces",Georgia,serif;margin-top:0;color:var(--navy)}
-.pill{display:inline-block;background:#e8f7ff;color:#14518d;padding:5px 10px;border-radius:99px;font-size:.78rem;font-weight:800;margin:3px}
-
-.topic-jump{display:grid;gap:6px;margin-top:14px}
-.topic-item-btn{
-  width:100%;
-  text-align:left;
-  border:1px solid #dcebf5;
-  background:#f7fcff;
-  color:var(--ink);
-  padding:8px 11px;
-  border-radius:11px;
-  font-size:.84rem;
-  font-weight:650;
-  line-height:1.3;
-  transition:all .18s ease;
-}
-.topic-item-btn:hover{border-color:var(--sky);background:#e8f7ff;color:var(--navy)}
-.topic-item-btn.active-topic{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:800}
-
-.detail-pager{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:26px;
-  padding-top:18px;
-  border-top:1px solid #e3eff7;
-}
-.pager-btn{
-  border:1px solid #c9e3f5;
-  background:#effaff;
-  color:var(--navy);
-  padding:10px 15px;
-  border-radius:12px;
-  font-weight:800;
-  font-size:.88rem;
-  transition:all .2s ease;
-}
-.pager-btn:hover:not(:disabled){background:#dcf2ff;border-color:var(--blue);transform:translateY(-1px)}
-.pager-btn:disabled{opacity:.45;cursor:not-allowed}
-
-.callout{padding:17px 19px;background:#effaff;border-left:4px solid var(--sky);border-radius:12px;margin:18px 0;color:#244a6d}
-.warning{background:#fff7e8;border-left-color:var(--orange)}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
-.step{background:#f1faff;border-radius:16px;padding:16px}
-.step b{display:block;color:var(--navy);margin-bottom:5px}
-.sources a{display:block;color:var(--blue);overflow-wrap:anywhere;margin:9px 0}
-
-.loading{
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 25% 25%,#1e56a0 0%,transparent 48%),
-    radial-gradient(circle at 80% 75%,#1765b5 0%,transparent 45%),
-    #123b78;
-  z-index:50;
-  display:grid;
-  place-items:center;
-  color:white;
-  transition:opacity .35s ease,visibility .35s ease;
-}
-.loading.hide{opacity:0;pointer-events:none;visibility:hidden}
-.loader-inner{text-align:center;padding:20px;max-width:290px}
-.loader-ring-wrap{
-  width:72px;
-  height:72px;
-  margin:0 auto 16px;
-  position:relative;
-  display:grid;
-  place-items:center;
-}
-.loader-dot{
-  width:64px;
-  height:64px;
-  border:4px solid #ffffff38;
-  border-top-color:#ffd447;
-  border-right-color:#35b8ea;
-  border-radius:50%;
-  animation:spin .85s linear infinite;
-}
-.loader-inner b{
-  display:block;
-  font-family:"Fraunces",Georgia,serif;
-  font-size:1.12rem;
-}
-.loader-caption{
-  display:block;
-  margin-top:5px;
-  font-size:.78rem;
-  color:#bcebff;
-  font-weight:600;
-}
-.loader-progress{
-  width:170px;
-  height:4px;
-  background:rgba(255,255,255,.18);
-  border-radius:99px;
-  margin:13px auto 0;
-  overflow:hidden;
-}
-.loader-progress span{
-  display:block;
-  width:45%;
-  height:100%;
-  border-radius:99px;
-  background:linear-gradient(90deg,#ffd447,#35b8ea,#48a985);
-  animation:loaderBar 1.15s ease-in-out infinite;
-}
-
+button:focus-visible,a:focus-visible{outline:3px solid #f4bd50;outline-offset:4px}
 .hidden{display:none!important}
+.screen{min-height:100vh}
+.topbar{height:72px;padding:0 clamp(18px,5vw,76px);display:flex;align-items:center;justify-content:space-between;background:rgba(7,29,59,.96);color:white;position:sticky;top:0;z-index:20;backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:11px;color:white;text-decoration:none;font-weight:800;letter-spacing:.02em}
+.brand-mark{width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,#38bdf8,#1765b5);display:grid;place-items:center;font-size:19px}
+.top-actions{display:flex;gap:9px;align-items:center}
+.nav-btn{border:1px solid rgba(255,255,255,.22);background:transparent;color:white;border-radius:999px;padding:9px 16px;font-weight:700;font-size:.88rem}
+.nav-btn:hover{background:rgba(255,255,255,.12)}
+.eyebrow{font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:.73rem;font-weight:500}
+h1,h2,h3,p{margin-top:0}
+h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
+.welcome{background:radial-gradient(ellipse at 76% 45%,#174b86 0%,#0b2d59 37%,#071d3b 76%);color:white;min-height:calc(100vh - 72px);display:grid;grid-template-columns:1.05fr .95fr;align-items:center;padding:clamp(38px,7vw,100px) clamp(22px,8vw,120px);gap:30px;overflow:hidden;position:relative}
+.welcome:before,.welcome:after{content:"";position:absolute;border:1px solid rgba(110,203,255,.12);border-radius:50%;width:540px;height:540px;right:2%;top:5%;pointer-events:none}
+.welcome:after{width:680px;height:680px;right:-3%;top:-4%}
+.welcome-copy{position:relative;z-index:2;max-width:660px}
+.welcome .eyebrow{color:#82d9ff}
+.welcome h1{font-size:clamp(2.8rem,6.5vw,6.2rem);line-height:.99;letter-spacing:-.065em;margin:20px 0}
+.welcome h1 span{color:#64d3f5}
+.welcome p{font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.8;color:#d3e7f8;max-width:570px}
+.primary-btn{border:0;border-radius:999px;background:linear-gradient(100deg,#42c7ed,#2584d5);color:#062347;font-weight:900;letter-spacing:.08em;padding:16px 28px;margin-top:18px;box-shadow:0 12px 30px rgba(28,161,220,.25);transition:.2s}
+.primary-btn:hover{transform:translateY(-3px);box-shadow:0 16px 35px rgba(28,161,220,.35)}
+.welcome-art{position:relative;z-index:1;display:grid;place-items:center;min-height:420px}
+.earth{width:min(37vw,410px);aspect-ratio:1;border-radius:50%;position:relative;background:radial-gradient(circle at 32% 25%,#78e1ff 0,#2d9cd8 28%,#14518c 63%,#082b58 100%);box-shadow:inset -28px -25px 50px rgba(0,0,0,.35),0 0 70px rgba(55,188,245,.25);animation:float 6s ease-in-out infinite}
+.earth:before{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(120deg,transparent 45%,rgba(3,19,44,.55) 100%)}
+.continent{position:absolute;background:#61bd91;opacity:.95;filter:drop-shadow(0 2px 2px rgba(0,0,0,.12))}
+.continent.a{width:28%;height:38%;left:19%;top:18%;border-radius:65% 30% 55% 35%;transform:rotate(25deg);clip-path:polygon(25% 0,90% 12%,100% 42%,72% 60%,85% 100%,45% 82%,35% 55%,0 40%)}
+.continent.b{width:18%;height:39%;left:40%;top:48%;border-radius:50%;transform:rotate(-18deg);clip-path:polygon(20% 0,90% 18%,80% 45%,60% 100%,25% 76%,0 30%)}
+.continent.c{width:29%;height:26%;right:10%;top:28%;border-radius:55%;transform:rotate(12deg);clip-path:polygon(0 25%,35% 0,100% 20%,80% 75%,45% 100%,20% 60%)}
+.orbit{position:absolute;width:118%;height:43%;border:1px solid rgba(117,220,255,.55);border-radius:50%;transform:rotate(-22deg)}
+.orbit.two{width:126%;height:53%;transform:rotate(48deg);border-color:rgba(255,255,255,.18)}
+.art-label{position:absolute;background:rgba(5,27,57,.8);border:1px solid rgba(148,220,255,.28);padding:9px 13px;border-radius:12px;color:#d9f5ff;font-size:.8rem;backdrop-filter:blur(8px)}
+.art-label.one{top:14%;right:-5%}.art-label.two{bottom:17%;left:-7%;cursor:pointer;transition:background .2s,border-color .2s,transform .2s;user-select:none}.art-label.two:hover,.art-label.two:focus-visible{background:rgba(10,57,100,.94);border-color:rgba(150,225,255,.72);transform:translateY(-2px);outline:none}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+.section-wrap{max-width:1200px;margin:auto;padding:clamp(34px,6vw,70px) 22px}
+.section-heading{text-align:center;max-width:720px;margin:0 auto 34px}
+.section-heading .eyebrow{color:var(--blue)}
+.section-heading h2{font-size:clamp(2rem,4vw,3.1rem);letter-spacing:-.045em;margin:10px 0}
+.section-heading p{color:var(--muted);line-height:1.7}
+.menu-screen{background:linear-gradient(180deg,#f3f9ff,#f8fbfe)}
+.topic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.topic-bubble{--topic:var(--c1);border:1px solid var(--line);background:white;border-radius:23px;padding:22px 18px;text-align:left;min-height:188px;box-shadow:0 8px 22px rgba(15,55,95,.045);transition:.22s;position:relative;overflow:hidden;color:var(--ink)}
+.topic-bubble:before{content:"";position:absolute;inset:auto -20px -55px auto;width:135px;height:135px;border-radius:50%;background:var(--topic);opacity:.09;transition:.22s}
+.topic-bubble:hover{transform:translateY(-5px);border-color:var(--topic);box-shadow:0 15px 30px rgba(15,55,95,.11)}
+.topic-bubble:hover:before{transform:scale(1.35)}
+.topic-bubble .num{font-family:'DM Mono',monospace;color:var(--topic);font-size:.78rem}
+.topic-icon{width:45px;height:45px;border-radius:15px;background:color-mix(in srgb,var(--topic) 12%,white);display:grid;place-items:center;font-size:1.45rem;margin:12px 0}
+.topic-bubble strong{display:block;font-family:Manrope;font-size:1rem;line-height:1.25;max-width:190px}
+.topic-bubble small{display:block;color:var(--muted);margin-top:8px;line-height:1.45}
+.facts-area{margin-top:50px;background:linear-gradient(120deg,#0a2a52,#123f75);border-radius:28px;padding:clamp(24px,4vw,42px);color:white;position:relative;overflow:hidden}
+.facts-area:after{content:"✦";position:absolute;font-size:180px;right:25px;top:-35px;color:rgba(255,255,255,.05)}
+.facts-head{display:flex;justify-content:space-between;align-items:end;gap:15px;position:relative;z-index:1}
+.facts-head h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:7px 0}
+.facts-head p{color:#c6def3;margin:0;max-width:440px}
+.fact-card{position:relative;z-index:1;margin-top:23px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:19px;padding:23px;min-height:130px;display:flex;align-items:center;gap:18px}
+.fact-spark{font-size:2.1rem}
+.fact-card p{font-size:1.05rem;line-height:1.7;margin:0;max-width:850px}
+.fact-controls{display:flex;gap:9px;margin-top:16px;position:relative;z-index:1}
+.light-btn{border:1px solid rgba(255,255,255,.35);background:transparent;color:white;padding:9px 15px;border-radius:999px;font-weight:700}
+.light-btn:hover{background:rgba(255,255,255,.12)}
+.topic-screen{background:var(--paper)}
+.topic-hero{--topic:var(--c1);background:linear-gradient(120deg,color-mix(in srgb,var(--topic) 92%,#071d3b),var(--topic));color:white;padding:clamp(35px,6vw,68px) max(22px,calc((100vw - 1120px)/2));position:relative;overflow:hidden}
+.topic-hero:after{content:"";position:absolute;width:350px;height:350px;border:1px solid rgba(255,255,255,.2);border-radius:50%;right:8%;top:-150px;box-shadow:0 0 0 35px rgba(255,255,255,.04),0 0 0 75px rgba(255,255,255,.035)}
+.back-btn{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:white;border-radius:999px;padding:9px 15px;font-weight:700;margin-bottom:27px;position:relative;z-index:1}
+.back-btn:hover{background:rgba(255,255,255,.2)}
+.topic-hero-inner{position:relative;z-index:1;max-width:850px}
+.topic-hero .eyebrow{color:rgba(255,255,255,.78)}
+.topic-hero h1{font-size:clamp(2.2rem,5vw,4.5rem);letter-spacing:-.055em;line-height:1.03;margin:12px 0}
+.topic-hero p{font-size:1.08rem;line-height:1.7;color:rgba(255,255,255,.9);max-width:760px;margin-bottom:0}
+.topic-content{max-width:1120px;margin:auto;padding:40px 22px 70px}
+.content-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:start}
+.info-card{background:white;border:1px solid var(--line);border-radius:22px;padding:clamp(22px,3vw,32px);box-shadow:0 8px 25px rgba(15,55,95,.045)}
+.info-card h2{font-size:1.45rem;letter-spacing:-.03em;margin-bottom:13px}
+.info-card h3{font-size:1.05rem;margin:22px 0 8px}
+.info-card p,.info-card li{color:#4d6178;line-height:1.75}
+.info-card ul{padding-left:21px;margin-bottom:0}
+.info-card li+li{margin-top:7px}
+.highlight{border-left:4px solid var(--topic,var(--blue));background:color-mix(in srgb,var(--topic,var(--blue)) 8%,white);padding:15px 17px;border-radius:0 13px 13px 0;margin-top:20px;color:#28445f;line-height:1.65}
+.visual-card{background:linear-gradient(145deg,#eaf6ff,#f7fbff);border:1px solid #d9eaf7;border-radius:22px;padding:24px;min-height:245px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.visual-icon{font-size:4.4rem;margin-bottom:12px;filter:drop-shadow(0 8px 10px rgba(16,67,110,.12))}
+.visual-card h3{margin:0 0 8px}
+.visual-card p{color:var(--muted);line-height:1.65;margin:0;max-width:360px}
+.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:17px}
+.mini-item{border:1px solid var(--line);background:#fbfdff;border-radius:15px;padding:15px}
+.mini-item strong{display:block;margin-bottom:5px;color:var(--ink)}
+.mini-item span{font-size:.9rem;color:var(--muted);line-height:1.5}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.step{background:#f5faff;border:1px solid #dcecf8;border-radius:16px;padding:16px}
+.step b{display:block;color:var(--topic,var(--blue));font-family:'DM Mono';font-size:.78rem;margin-bottom:7px}
+.step p{font-size:.9rem;margin:0}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.compare>div{border-radius:17px;padding:17px;background:#f2f8fd;border:1px solid #dfebf5}
+.compare h3{margin:0 0 8px;font-size:1rem}
+.compare p{font-size:.9rem;margin:0}
+.source-list{display:grid;gap:12px;margin-top:16px}
+.source-link{display:flex;align-items:center;justify-content:space-between;gap:15px;text-decoration:none;color:var(--ink);background:#f8fbfe;border:1px solid var(--line);border-radius:15px;padding:15px 17px;transition:.18s}
+.source-link:hover{border-color:var(--topic);transform:translateX(3px)}
+.source-link strong{display:block}
+.source-link small{color:var(--muted);display:block;margin-top:4px;line-height:1.45}
+.source-link span{font-size:1.3rem;color:var(--topic)}
+.bottom-nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
+.bottom-nav button{border:1px solid var(--line);background:white;color:var(--ink);padding:12px 17px;border-radius:999px;font-weight:800}
+.bottom-nav button:hover{border-color:var(--topic);color:var(--topic)}
+.footer{background:#071d3b;color:#c5d7e9;text-align:center;padding:25px 20px;font-size:.85rem}
+.footer strong{color:white}
+@media(max-width:900px){.topic-grid{grid-template-columns:repeat(2,1fr)}.welcome{grid-template-columns:1fr;text-align:center}.welcome-copy{margin:auto}.welcome-art{min-height:330px}.earth{width:min(58vw,330px)}.content-grid{grid-template-columns:1fr}.topic-hero:after{right:-130px}}
+@media(max-width:560px){.topbar{height:62px;padding:0 15px}.brand{font-size:.9rem}.brand-mark{width:32px;height:32px}.nav-btn{padding:8px 11px;font-size:.78rem}.welcome{min-height:calc(100vh - 62px);padding:46px 22px 30px}.welcome h1{font-size:clamp(2.7rem,13vw,4rem)}.welcome-art{min-height:270px}.earth{width:245px}.art-label.one{right:-12px}.art-label.two{left:-8px}.topic-grid{gap:10px}.topic-bubble{padding:16px 14px;min-height:170px;border-radius:18px}.topic-bubble strong{font-size:.91rem}.topic-bubble small{font-size:.78rem}.topic-icon{width:39px;height:39px;margin:9px 0}.facts-head{display:block}.facts-head p{margin-top:8px}.fact-card{align-items:flex-start;padding:18px}.fact-card p{font-size:.94rem}.topic-hero{padding:28px 20px 38px}.topic-hero h1{font-size:2.5rem}.topic-content{padding:24px 15px 45px}.info-card{padding:21px;border-radius:18px}.steps{grid-template-columns:1fr}.mini-grid{grid-template-columns:1fr 1fr}.compare{grid-template-columns:1fr}.bottom-nav button{font-size:.82rem;padding:11px 13px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes loaderBar{0%{transform:translateX(-110%)}100%{transform:translateX(300%)}}
-@keyframes float{50%{transform:translateY(-12px)}}
-@keyframes cloudDrift{0%{transform:translateX(-7px)}100%{transform:translateX(9px)}}
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@keyframes ringDrift{to{transform:translate(-18px,-12px) scale(1.04)}}
-@keyframes orbitPulse{50%{transform:rotate(-17deg) scale(1.035);opacity:.72}}
-@keyframes sunGlow{50%{box-shadow:0 0 62px #ffd447aa;transform:scale(1.06)}}
-@keyframes tagFloat{50%{transform:translateY(-8px)}}
+/* --- Evolución oceánica: fotografía real, profundidad y vida marina --- */
+.welcome{
+ background:
+  linear-gradient(90deg,rgba(4,20,43,.97) 0%,rgba(5,29,59,.88) 48%,rgba(5,29,59,.46) 100%),
+  url('https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1400') center 48%/cover no-repeat,
+  radial-gradient(ellipse at 76% 45%,#174b86 0%,#0b2d59 37%,#071d3b 76%);
+}
+.welcome-art{isolation:isolate}
+.welcome-art:before{
+ content:"";position:absolute;inset:5% -13% 2% 2%;z-index:-1;border-radius:48%;
+ background:linear-gradient(145deg,rgba(22,113,161,.12),rgba(4,20,44,.22));
+ filter:blur(5px)
+}
+/* Tierra realista: textura satelital NASA sobre una esfera con volumen */
+.earth{
+ width:min(37vw,410px);aspect-ratio:1;border-radius:50%;position:relative;overflow:hidden;
+ border:1px solid rgba(177,235,255,.42);
+ background-color:#061b35;
+ background-image:url('https://eoimages.gsfc.nasa.gov/images/imagerecords/74000/74218/world.topo.bathy.200412.3x5400x2700.jpg');
+ background-repeat:repeat-x;
+ background-size:200% 100%;
+ background-position:24% center;
+ box-shadow:inset -32px -22px 48px rgba(0,8,24,.55),inset 12px 8px 24px rgba(132,222,255,.16),0 0 0 5px rgba(93,199,255,.025),0 0 48px rgba(55,188,245,.24);
+ animation:earthSpin 58s linear infinite,earthFloat 7s ease-in-out infinite;
+ will-change:background-position;
+}
+.earth:before{
+ content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:2;
+ background:radial-gradient(ellipse at 31% 27%,rgba(255,255,255,.17),transparent 25%),
+ radial-gradient(ellipse at 72% 73%,rgba(0,8,28,.64),transparent 58%),
+ linear-gradient(90deg,rgba(2,15,35,.16),transparent 24%,transparent 58%,rgba(0,8,25,.36));
+ box-shadow:inset -24px -12px 42px rgba(0,5,20,.38),inset 3px 2px 18px rgba(184,237,255,.17);
+}
+.earth:after{
+ content:"";position:absolute;inset:-2px;border-radius:50%;pointer-events:none;z-index:3;
+ background:radial-gradient(ellipse at 50% 50%,transparent 62%,rgba(93,204,255,.18) 76%,rgba(70,173,255,.04) 84%,transparent 90%);
+}
+@keyframes earthSpin{from{background-position:24% center}to{background-position:224% center}}
+@keyframes earthFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.welcome-art{perspective:900px}
+.orbit{pointer-events:none}
+.art-label{z-index:5}
+.photo-credit a:hover{text-decoration:none}
+@media(max-width:900px){.earth{width:min(58vw,330px)}}
+@media(max-width:560px){.earth{width:245px}}
+@media(prefers-reduced-motion:reduce){.earth{animation:none;background-position:24% center}}
 
-@media(max-width:800px){
-  .hero-grid{grid-template-columns:1fr;text-align:center;padding:55px 0}
-  .hero p{margin-inline:auto}
-  .hero-actions{justify-content:center}
-  .hero-art{min-height:310px}
-  .earth-wrap{width:235px}
-  .orbit{width:290px;height:110px}
-  .hero-tag.ocean{left:2%;bottom:12%}
-  .hero-tag.air{right:2%;top:12%}
-  .bubble-grid,.fact-grid{grid-template-columns:repeat(2,1fr)}
-  .content-grid{grid-template-columns:1fr}
-  .side-card{position:static}
-  .steps{grid-template-columns:1fr}
-  .small-nav button{padding:8px;font-size:.86rem}
+.menu-screen{
+ background:
+  linear-gradient(180deg,rgba(238,247,255,.91),rgba(244,250,255,.97) 42%,rgba(244,250,255,.94)),
+  url('https://images.unsplash.com/photo-1584267999791-0970eb9426e5?auto=format&fit=crop&w=1800&q=85') center/cover fixed;
+}
+.marine-life{
+ display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;margin:0 0 34px;
+}
+.marine-card{
+ min-height:175px;position:relative;overflow:hidden;border-radius:20px;
+ background:#08294c;color:white;isolation:isolate;box-shadow:0 12px 30px rgba(7,29,59,.13);
+}
+.marine-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .7s}
+.marine-card:hover img{transform:scale(1.06)}
+.marine-card:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(3,19,42,.88),rgba(3,19,42,.04) 85%)}
+.marine-card div{position:absolute;left:17px;right:15px;bottom:15px}
+.marine-card strong{display:block;font-family:Manrope;font-size:1.08rem}
+.marine-card small{display:block;color:#d7eafa;margin-top:4px;line-height:1.4}
+.ocean-life-strip{
+ min-height:118px;display:flex;align-items:center;padding:22px max(22px,calc((100vw - 1120px)/2));
+ color:white;background:
+ linear-gradient(90deg,rgba(4,25,51,.9),rgba(5,40,72,.48)),
+ url('https://commons.wikimedia.org/wiki/Special:FilePath/Underwater_photo_of_coral_reef.jpg?width=1600') center 45%/cover no-repeat;
+ border-bottom:1px solid rgba(255,255,255,.16);
+}
+.ocean-life-strip strong{font-family:Manrope;font-size:1.15rem}
+.ocean-life-strip span{display:block;color:#d4eafa;font-size:.9rem;margin-top:5px}
+.topic-screen{background:
+ linear-gradient(rgba(235,246,255,.92),rgba(242,248,253,.96)),
+ url('https://images.unsplash.com/photo-1584267999791-0970eb9426e5?auto=format&fit=crop&w=1800&q=85') center/cover fixed;
+}
+ .topic-hero{
+ background:linear-gradient(105deg,color-mix(in srgb,var(--topic) 88%,#071d3b),rgba(7,29,59,.48));
+ background-position:center;background-size:cover;background-repeat:no-repeat;
+}
+.visual-card{position:relative;overflow:hidden}
+.visual-card:after{
+ content:"";position:absolute;width:150px;height:150px;border-radius:50%;
+ right:-65px;bottom:-85px;background:var(--topic,var(--sky));opacity:.08
+}
+@media(max-width:760px){
+ .marine-life{grid-template-columns:1fr 1fr}
+ .marine-card:first-child{grid-column:1/-1;min-height:190px}
+ .marine-card{min-height:145px}
+ .welcome{background-position:58% center}
+ .menu-screen,.topic-screen{background-attachment:scroll}
+}
+@media(max-width:430px){
+ .marine-life{gap:9px}
+ .marine-card{border-radius:16px}
+ .marine-card div{left:12px;bottom:12px}
+ .marine-card strong{font-size:.95rem}
+ .marine-card small{font-size:.76rem}
 }
 
-@media(max-width:520px){
-  .bubble-grid,.fact-grid{grid-template-columns:1fr}
-  .bubble{min-height:155px}
-  .hero{min-height:auto}
-  .hero-grid{padding:45px 0}
-  .hero-art{min-height:260px}
-  .earth-wrap{width:205px}
-  .orbit{width:255px}
-  .hero-tag{font-size:.68rem;padding:7px 9px}
-  .hero-tag small{font-size:.6rem}
-  .hero-tag.ocean{left:0;bottom:8%}
-  .hero-tag.air{right:0;top:7%}
-  .section{padding:60px 0}
-  .page-title{padding:26px}
-  .article-card,.side-card{padding:20px}
-  .brand{font-size:.95rem}
+.topic-hero{transition:background-color .35s ease}
+
+/* Tierra 3D interactiva: giro manual, textura satelital real y volumen */
+.earth{
+  overflow:hidden;
+  background:#061a32!important;
+  animation:earthFloat 7s ease-in-out infinite!important;
+  cursor:grab;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+  box-shadow:0 0 0 1px rgba(190,235,255,.42),0 0 0 8px rgba(93,199,255,.045),0 0 76px rgba(55,188,245,.42);
 }
+.earth:active{cursor:grabbing}
+#earthCanvas{display:block;width:100%;height:100%;border-radius:50%}
+.earth:before{
+  z-index:2;
+  pointer-events:none;
+  background:
+   radial-gradient(ellipse at 29% 24%,rgba(255,255,255,.13),transparent 27%),
+   radial-gradient(ellipse at 73% 76%,rgba(0,7,24,.52),transparent 57%),
+   linear-gradient(90deg,rgba(2,15,35,.08),transparent 48%,rgba(0,8,25,.25));
+}
+.earth:after{
+  z-index:3;
+  pointer-events:none;
+  box-shadow:inset -18px -10px 34px rgba(0,5,20,.28),inset 2px 2px 16px rgba(184,237,255,.13);
+}
+.earth-hint{
+ position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);
+ color:#c8eaff;font-size:.76rem;letter-spacing:.03em;white-space:nowrap;
+ opacity:.82;text-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none;
+}
+@media(max-width:560px){.earth-hint{bottom:-29px;font-size:.69rem}}
+@media(prefers-reduced-motion:reduce){.earth{animation:none!important}}
+
 </style>
 </head>
 <body>
-<div class="loading" id="loading">
-  <div class="loader-inner">
-    <div class="loader-ring-wrap">
-      <div class="loader-dot"></div>
-    </div>
-    <b>Preparando nuestro planeta...</b>
-    <span class="loader-caption">Océano Pacífico · Atmósfera · Prevención</span>
-    <div class="loader-progress"><span></span></div>
-  </div>
-</div>
-
 <header class="topbar">
-  <div class="wrap topbar-inner">
-    <a class="brand" href="#" onclick="showHome();return false">EL NIÑO<span>.</span></a>
-    <nav class="small-nav">
-      <button onclick="showHome()">Inicio</button>
-      <button onclick="scrollToMenu()">Explorar</button>
-    </nav>
-  </div>
+ <a class="brand" href="#" onclick="goHome();return false"><span class="brand-mark">🌊</span><span>EL NIÑO <span style="font-weight:500;opacity:.7">/ EXPLORA</span></span></a>
+ <div class="top-actions">
+  <button class="nav-btn" onclick="goHome()">Inicio</button>
+  <button class="nav-btn" onclick="showMenu()">Explorar</button>
+ </div>
 </header>
 
-<main id="home">
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">🌎 GUÍA EDUCATIVA INTERACTIVA</span>
-        <h1>EL FENÓMENO <span>DEL NIÑO</span></h1>
-        <p>Un fenómeno, muchas consecuencias. Descubre qué ocurre en el océano Pacífico, cómo puede influir en el Perú y qué podemos hacer para prepararnos.</p>
-        <div class="hero-actions">
-          <button class="primary" onclick="scrollToMenu()">ENTRAR <span aria-hidden="true">→</span></button>
-          <button class="secondary" onclick="document.getElementById('facts').scrollIntoView()">¿Sabías que...?</button>
-        </div>
-      </div>
-      <div class="hero-art" aria-label="Ilustración detallada del planeta Tierra">
-        <div class="sun"></div>
-        <div class="orbit"></div>
-        <div class="earth-wrap">
-          <div class="earth">
-            <svg class="earth-svg" viewBox="0 0 200 200" role="img" aria-label="Planeta Tierra con continentes y océanos">
-              <defs>
-                <radialGradient id="seaGrad" cx="35%" cy="30%" r="70%">
-                  <stop offset="0%" stop-color="#9be7ff"/>
-                  <stop offset="28%" stop-color="#35b8ea"/>
-                  <stop offset="68%" stop-color="#1765b5"/>
-                  <stop offset="100%" stop-color="#123b78"/>
-                </radialGradient>
-                <linearGradient id="forestGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#7bd0a5"/>
-                  <stop offset="100%" stop-color="#48a985"/>
-                </linearGradient>
-                <linearGradient id="sandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffe082"/>
-                  <stop offset="100%" stop-color="#e59a4c"/>
-                </linearGradient>
-              </defs>
-              <circle cx="100" cy="100" r="100" fill="url(#seaGrad)"/>
-              <g fill="none" stroke="rgba(255,255,255,.16)" stroke-width=".75">
-                <ellipse cx="100" cy="100" rx="46" ry="98"/>
-                <ellipse cx="100" cy="100" rx="80" ry="98"/>
-                <line x1="0" y1="100" x2="200" y2="100" stroke-dasharray="3 3"/>
-                <line x1="14" y1="62" x2="186" y2="62"/>
-                <line x1="14" y1="138" x2="186" y2="138"/>
-              </g>
-              <path d="M25,35 C40,24 64,23 78,35 C83,43 72,56 62,64 C55,70 52,78 43,75 C33,71 21,54 25,35 Z" fill="url(#forestGrad)"/>
-              <path d="M36,44 C46,41 57,43 60,50 C51,54 40,53 36,44 Z" fill="url(#sandGrad)" opacity=".72"/>
-              <path d="M58,84 C68,82 79,88 83,100 C87,114 77,132 69,150 C64,160 59,167 56,165 C54,153 58,136 55,118 C52,102 52,90 58,84 Z" fill="url(#forestGrad)"/>
-              <path d="M58,86 C61,104 60,126 57,155" fill="none" stroke="#b9f6ca" stroke-width="2" opacity=".75"/>
-              <path d="M114,34 C128,30 142,34 146,46 C138,54 122,54 114,46 Z" fill="url(#forestGrad)"/>
-              <path d="M114,62 C128,58 146,64 152,78 C156,92 146,116 136,130 C130,134 125,126 122,110 C118,94 108,76 114,62 Z" fill="url(#forestGrad)"/>
-              <path d="M116,66 C128,63 142,67 147,78 C136,82 122,80 116,66 Z" fill="url(#sandGrad)" opacity=".78"/>
-              <path d="M152,38 C168,36 182,46 184,62 C176,74 162,76 152,66 Z" fill="url(#forestGrad)"/>
-              <path d="M158,116 C170,112 180,120 178,132 C170,138 158,134 158,116 Z" fill="url(#forestGrad)"/>
-              <path d="M38,184 C66,175 134,175 162,184 C144,195 56,195 38,184 Z" fill="#ffffff" opacity=".88"/>
-            </svg>
-            <div class="earth-clouds"></div>
-            <div class="earth-shade"></div>
-          </div>
-        </div>
-        <span class="wave one">〰️</span>
-        <span class="wave two">🌊</span>
-        <div class="hero-tag ocean">🌊 Océano Pacífico<small>Temperatura del mar</small></div>
-        <div class="hero-tag air">☁️ Atmósfera<small>Vientos y lluvias</small></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section menu-section" id="menu">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">Explora y aprende</span>
-        <h2>Siete preguntas para entender El Niño</h2>
-        <p>Elige un tema para abrir su explicación. Puedes volver al menú cuando quieras.</p>
-      </div>
-      <div class="bubble-grid" id="bubbleGrid"></div>
-    </div>
-  </section>
-
-  <section class="section facts" id="facts">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">Pequeños grandes datos</span>
-        <h2>¿Sabías que...?</h2>
-        <p>Algunos detalles que ayudan a mirar este fenómeno con más curiosidad.</p>
-      </div>
-      <div class="fact-grid">
-        <article class="fact"><div class="fact-icon">🌊</div><h3>No es solo lluvia</h3><p>El Niño comienza con cambios en el océano y la atmósfera del Pacífico tropical. Sus efectos pueden sentirse en el clima de distintas regiones.</p></article>
-        <article class="fact"><div class="fact-icon">🧭</div><h3>No afecta igual a todos</h3><p>Los impactos dependen de la intensidad del episodio, la zona y las condiciones locales. Una región puede vivir lluvias intensas mientras otra enfrenta menos lluvias.</p></article>
-        <article class="fact"><div class="fact-icon">📡</div><h3>Se puede monitorear</h3><p>Instituciones científicas observan la temperatura del mar, los vientos, las lluvias y otros indicadores para evaluar cómo evoluciona el fenómeno.</p></article>
-      </div>
-      <div class="notice"><b>Recuerda:</b> El Fenómeno del Niño es natural. La prevención no evita que ocurra, pero puede reducir los daños y proteger a las personas.</div>
-    </div>
-  </section>
-</main>
-
-<section class="page" id="detail">
-  <div class="wrap">
-    <button class="back" onclick="showHome()">← Volver al menú principal</button>
-    <div class="page-title" id="detailBanner">
-      <span class="kicker" id="detailKicker">APRENDE</span>
-      <h1 id="detailTitle"></h1>
-      <p id="detailIntro"></p>
-    </div>
-    <div class="content-grid">
-      <div>
-        <article class="article-card" id="detailBody"></article>
-        <div class="detail-pager" id="detailPager"></div>
-      </div>
-      <aside class="side-card">
-        <h3>En esta sección</h3>
-        <p>Lee con calma, identifica las ideas principales y piensa cómo se relacionan con tu comunidad.</p>
-        <span class="pill">Ciencia</span>
-        <span class="pill">Perú</span>
-        <span class="pill">Prevención</span>
-        <div class="topic-jump" id="topicJump"></div>
-        <hr style="border:0;border-top:1px solid #e4edf4;margin:18px 0">
-        <button class="primary" style="width:100%" onclick="showHome()">Volver a explorar</button>
-      </aside>
-    </div>
-  </div>
+<main>
+<section id="welcome" class="screen welcome">
+ <div class="welcome-copy">
+  <div class="eyebrow">Ciencia · Océano · Perú</div>
+  <h1>EL NIÑO:<br><span>un fenómeno,</span><br>muchas consecuencias.</h1>
+  <p>El océano y la atmósfera están conectados. Cuando sus condiciones cambian, también puede cambiar el clima y la vida de millones de personas. Descubre cómo sucede y por qué importa en el Perú.</p>
+  <button class="primary-btn" onclick="showMenu()">ENTRAR A EXPLORAR&nbsp; →</button>
+ </div>
+ <div class="welcome-art" aria-label="Ilustración decorativa de la Tierra">
+  <div class="orbit"></div><div class="orbit two"></div>
+  <div class="earth" id="earthGlobe" role="img" aria-label="Tierra tridimensional interactiva. Arrastra para girar el planeta manualmente.">
+    <canvas id="earthCanvas" aria-hidden="true"></canvas>
+   </div>
+  <div class="art-label one">☀️ Atmósfera</div><button class="art-label two" id="pacificFocus" type="button" aria-label="Orientar la Tierra hacia el océano Pacífico">🌊 Océano Pacífico</button>
+   <div class="earth-hint">↔ Toca y arrastra para girar</div>
+ </div>
 </section>
 
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <div><b>EL FENÓMENO DEL NIÑO</b><p>Un fenómeno, muchas consecuencias.</p></div>
-    <div><b>Fuentes institucionales para consultar</b><p><a href="https://www.senamhi.gob.pe/" target="_blank" rel="noopener">SENAMHI</a> · <a href="https://www.gob.pe/indeci" target="_blank" rel="noopener">INDECI</a> · <a href="https://www.gob.pe/minam" target="_blank" rel="noopener">MINAM</a> · <a href="https://www.enfen.gob.pe/" target="_blank" rel="noopener">ENFEN</a></p></div>
+<section id="menu" class="screen menu-screen hidden">
+ <div class="section-wrap">
+  <div class="section-heading">
+   <div class="eyebrow">Centro de exploración</div>
+   <h2>Un fenómeno, siete perspectivas</h2>
+   <p>Elige una burbuja para abrir su sección. Cada tema tiene su propio color y contenido para que puedas recorrerlo a tu ritmo.</p>
   </div>
-</footer>
+  <div class="topic-grid" id="topicGrid"></div>
+  <div class="marine-life" aria-label="Fotografías de vida marina">
+   <article class="marine-card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1400" alt="Dos ballenas jorobadas nadando bajo el agua" loading="lazy">
+    <div><strong>Gigantes del Pacífico</strong><small>Ballenas jorobadas en su entorno marino</small></div>
+   </article>
+   <article class="marine-card">
+    <img src="https://images.unsplash.com/photo-1584267999791-0970eb9426e5?auto=format&fit=crop&w=1800&q=85" alt="Banco de peces nadando sobre un arrecife" loading="lazy">
+    <div><strong>Un océano lleno de vida</strong><small>Bancos de peces y ecosistemas marinos</small></div>
+   </article>
+   <article class="marine-card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Green-sea-turtle.jpg?width=900" alt="Tortuga marina verde nadando bajo el agua" loading="lazy">
+    <div><strong>Habitantes del mar</strong><small>Tortugas marinas y biodiversidad</small></div>
+   </article>
+   <article class="marine-card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dolphin_Ocean.jpg?width=1200" alt="Delfines nadando en el océano" loading="lazy">
+    <div><strong>Viajeros del océano</strong><small>Delfines desplazándose en grupo</small></div>
+   </article>
+   <article class="marine-card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Manta_Ray_-_Under.jpg?width=1200" alt="Mantarraya nadando bajo el agua" loading="lazy">
+    <div><strong>Alas bajo el agua</strong><small>Mantarrayas recorriendo el mar</small></div>
+   </article>
+   <article class="marine-card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/OCNMS_Sea_Lion_%2849743722337%29.jpg?width=1200" alt="Lobo marino nadando bajo el agua" loading="lazy">
+    <div><strong>Vecinos del Pacífico</strong><small>Lobos marinos en su ambiente natural</small></div>
+   </article>
+  </div>
+  <section class="facts-area">
+   <div class="facts-head"><div><div class="eyebrow" style="color:#83dcff">Pequeños grandes datos</div><h2>¿Sabías que...?</h2></div><p>Curiosidades para mirar el fenómeno desde otros ángulos.</p></div>
+   <div class="fact-card"><div class="fact-spark">✦</div><p id="factText" aria-live="polite"></p></div>
+   <div class="fact-controls"><button class="light-btn" onclick="changeFact(-1)">← Anterior</button><button class="light-btn" onclick="changeFact(1)">Otra curiosidad →</button></div>
+  </section>
+ </div>
+</section>
+
+<section id="topicScreen" class="screen topic-screen hidden">
+ <div class="topic-hero" id="topicHero">
+  <button class="back-btn" onclick="showMenu()">← Volver al menú</button>
+  <div class="topic-hero-inner"><div class="eyebrow" id="topicEyebrow"></div><h1 id="topicTitle"></h1><p id="topicLead"></p></div>
+ </div>
+ <div class="ocean-life-strip">
+  <div><strong>El océano Pacífico está lleno de vida</strong><span>Sus cambios también influyen en los ecosistemas y en las personas.</span></div>
+ </div>
+ <div class="topic-content" id="topicContent"></div>
+</section>
+</main>
+<footer class="footer"><strong>EL NIÑO: Un fenómeno, muchas consecuencias</strong><br>Proyecto educativo · Aprende, comprende y prepárate.
+ <div class="photo-credit">Fotografías: <a href="https://commons.wikimedia.org/wiki/File:Humpback_Whale_underwater_shot.jpg" target="_blank" rel="noopener noreferrer">ballenas (NOAA / Wikimedia Commons)</a> · <a href="https://unsplash.com/photos/school-of-fish-in-water-_FW7__h3MMA" target="_blank" rel="noopener noreferrer">banco de peces (Unsplash)</a> · <a href="https://commons.wikimedia.org/wiki/File:Green-sea-turtle.jpg" target="_blank" rel="noopener noreferrer">tortuga marina (U.S. Fish and Wildlife Service)</a> · <a href="https://commons.wikimedia.org/wiki/File:Dolphin_Ocean.jpg" target="_blank" rel="noopener noreferrer">delfines</a> · <a href="https://commons.wikimedia.org/wiki/File:Manta_Ray_-_Under.jpg" target="_blank" rel="noopener noreferrer">mantarraya</a> · <a href="https://commons.wikimedia.org/wiki/File:OCNMS_Sea_Lion_(49743722337).jpg" target="_blank" rel="noopener noreferrer">lobo marino (NOAA)</a> · <a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-topography-bathymetry/" target="_blank" rel="noopener noreferrer">textura de la Tierra (NASA Blue Marble)</a>.</div>
+ </footer>
 
 <script>
-const sections=[
-{
-  title:"¿Qué es el Fenómeno del Niño?",
-  tag:"Concepto",
-  banner:"linear-gradient(120deg,#123b78 0%,#1765b5 65%,#2b9fd4 100%)",
-  kickerColor:"#bcebff",
-  intro:"Un evento climático natural relacionado con el calentamiento anormal de las aguas superficiales del océano Pacífico ecuatorial y con cambios en la atmósfera.",
-  body:`<h2 class="f-serif c-ocean">Una conexión entre el océano y la atmósfera</h2><div class="bg-ocean-soft"><p class="f-geo">El Fenómeno del Niño forma parte de una variación natural del sistema océano-atmósfera del Pacífico tropical. Durante un episodio de El Niño, las temperaturas de la superficie del mar aumentan en zonas del Pacífico ecuatorial y se modifican los patrones habituales de viento, presión y lluvia.</p></div><h2 class="f-geo c-indigo">¿Dónde ocurre?</h2><p class="f-italic">El calentamiento asociado al El Niño de escala global se desarrolla en el Pacífico ecuatorial, especialmente en sus sectores central y oriental. En el Perú también se vigila el calentamiento del mar frente a nuestra costa, conocido como <b class="f-script c-ocean">El Niño costero</b>.</p><h2 class="f-script c-teal">El Niño global y El Niño costero</h2><ul><li><b class="f-mono c-ocean">El Niño de escala global:</b> <span class="f-serif">se relaciona con cambios de temperatura del mar en el Pacífico ecuatorial central y oriental y con respuestas atmosféricas de gran escala.</span></li><li><b class="f-mono c-amber">El Niño costero:</b> <span class="f-geo">se refiere al calentamiento anómalo del mar frente a la costa de Perú y Ecuador, que puede influir especialmente en las condiciones de la costa peruana.</span></li></ul><div class="callout"><b class="f-geo c-ocean">Idea clave:</b> <span class="f-serif">El Niño no significa exactamente lo mismo que “lluvias fuertes”. Es un fenómeno oceánico-atmosférico que puede modificar el clima y producir impactos distintos según el lugar y el episodio.</span></div><h2 class="f-mono c-emerald">¿Por qué es importante conocerlo?</h2><p class="f-geo">Comprenderlo permite interpretar alertas, prepararse ante posibles impactos y tomar decisiones informadas en la familia, la escuela y la comunidad.</p>`
-},
-{
-  title:"¿Cómo se produce el Fenómeno del Niño?",
-  tag:"Océano y viento",
-  banner:"linear-gradient(120deg,#18304d 0%,#9a5b13 62%,#d99b1e 100%)",
-  kickerColor:"#ffe699",
-  intro:"Se desarrolla por alteraciones en la interacción entre el océano y la atmósfera, entre ellas el debilitamiento de los vientos alisios y cambios en la temperatura del mar.",
-  body:`<h2 class="f-geo c-amber">Primero: las condiciones habituales</h2><div class="bg-amber-soft"><p class="f-serif">En condiciones normales, los vientos alisios soplan generalmente de este a oeste cerca del ecuador. Ayudan a empujar las aguas superficiales cálidas hacia el Pacífico occidental, mientras que frente a Sudamérica ascienden aguas más frías desde zonas profundas.</p></div><h2 class="f-script c-coral">¿Qué cambia durante El Niño?</h2><div class="steps"><div class="step"><b class="f-mono c-ocean">1. Se debilitan los alisios</b><span class="f-geo">Los vientos que normalmente empujan el agua cálida hacia el oeste pierden fuerza o cambian.</span></div><div class="step"><b class="f-serif c-amber">2. Se calienta el Pacífico</b><span class="f-italic">Las aguas superficiales se calientan más de lo habitual en sectores del Pacífico ecuatorial.</span></div><div class="step"><b class="f-geo c-teal">3. Cambia la atmósfera</b><span class="f-mono">Se modifican la circulación del aire, la formación de nubes y la distribución de las lluvias.</span></div></div><h2 class="f-serif c-ocean">Una explicación conectada</h2><p class="f-geo">El océano y la atmósfera se influyen mutuamente. Por eso, los cambios del viento pueden favorecer el calentamiento del mar y ese calentamiento puede modificar a su vez los vientos y las lluvias. Esta interacción permite que el episodio se desarrolle y evolucione.</p><div class="callout"><b class="f-script c-amber">Importante:</b> <span class="f-serif">El proceso es natural y complejo. No lo produce la basura, la contaminación local ni una sola causa aislada.</span></div>`
-},
-{
-  title:"Necesidades primarias afectadas",
-  tag:"Vida básica",
-  banner:"linear-gradient(120deg,#123b78 0%,#1b6b52 65%,#48a985 100%)",
-  kickerColor:"#c9f5e4",
-  intro:"Las necesidades básicas para vivir —agua, alimentación, vivienda y salud— pueden verse comprometidas cuando ocurren impactos asociados a El Niño.",
-  body:`<h2 class="f-mono c-ocean">Agua</h2><div class="bg-ocean-soft"><p class="f-serif">Las lluvias intensas, inundaciones o daños en sistemas de abastecimiento pueden afectar la disponibilidad de agua segura. En algunas localidades, el agua puede contaminarse o el servicio puede interrumpirse temporalmente.</p></div><h2 class="f-script c-emerald">Alimentación</h2><div class="bg-emerald-soft"><p class="f-geo">Las lluvias, inundaciones, sequías localizadas o cambios en el mar pueden perjudicar cultivos, animales, pesca y transporte de alimentos. Esto puede reducir la producción o dificultar que los productos lleguen a los mercados.</p></div><h2 class="f-geo c-amber">Vivienda</h2><div class="bg-amber-soft"><p class="f-italic">Las inundaciones y los huaicos pueden dañar casas, especialmente cuando están ubicadas en zonas expuestas o construidas con materiales vulnerables. También pueden afectar los bienes y la seguridad de las familias.</p></div><h2 class="f-serif c-teal">Salud</h2><div class="bg-teal-soft"><p class="f-mono">Las emergencias pueden dificultar el acceso a centros de salud y agua segura. Después de lluvias e inundaciones, el agua estancada y los problemas de saneamiento pueden aumentar ciertos riesgos sanitarios.</p></div><div class="callout"><b class="f-geo c-emerald">Ejemplo:</b> <span class="f-serif">Si una inundación afecta una localidad, una familia podría tener dificultades para acceder a agua potable, alimentos, una vivienda segura y atención médica al mismo tiempo.</span></div>`
-},
-{
-  title:"Necesidades secundarias afectadas",
-  tag:"Entorno diario",
-  banner:"linear-gradient(120deg,#123b78 0%,#8c3d19 64%,#e06d33 100%)",
-  kickerColor:"#ffd9c4",
-  intro:"La educación, el transporte, la comunicación y la recreación también pueden alterarse, afectando la vida cotidiana y el bienestar.",
-  body:`<h2 class="f-serif c-indigo">Educación</h2><div class="bg-indigo-soft"><p class="f-geo">Las clases pueden suspenderse temporalmente si las escuelas se dañan, si las rutas de acceso son inseguras o si los locales se utilizan para atender una emergencia. La continuidad educativa también puede verse afectada cuando las familias deben trasladarse.</p></div><h2 class="f-mono c-coral">Transporte</h2><div class="bg-coral-soft"><p class="f-serif">Las lluvias intensas, deslizamientos, huaicos e inundaciones pueden deteriorar carreteras y puentes. Esto dificulta el traslado de estudiantes, trabajadores, pacientes y productos.</p></div><h2 class="f-geo c-plum">Comunicación</h2><div class="bg-plum-soft"><p class="f-italic">Los daños en postes, antenas, cables o suministro eléctrico pueden interrumpir algunos servicios de telefonía e internet. Sin comunicación, recibir alertas y coordinar ayuda puede resultar más difícil.</p></div><h2 class="f-script c-emerald">Recreación</h2><div class="bg-emerald-soft"><p class="f-geo">Parques, losas deportivas, plazas y otros espacios públicos pueden quedar dañados o temporalmente inaccesibles. La recuperación de estos lugares también forma parte del retorno a la vida cotidiana.</p></div><div class="callout"><b class="f-script c-coral">Para pensar:</b> <span class="f-serif">Las necesidades secundarias también importan: ayudan a aprender, desplazarnos, comunicarnos y convivir.</span></div>`
-},
-{
-  title:"Consecuencias del Fenómeno del Niño en el Perú",
-  tag:"En el Perú",
-  banner:"linear-gradient(120deg,#123b78 0%,#284b9e 62%,#4972d4 100%)",
-  kickerColor:"#dbe6ff",
-  intro:"Los efectos pueden ser sociales, económicos y ambientales. No se presentan de la misma manera en todas las regiones ni en todos los episodios.",
-  body:`<h2 class="f-geo c-ocean">Inundaciones y huaicos</h2><div class="bg-ocean-soft"><p class="f-serif">En determinadas zonas, las lluvias intensas pueden provocar desbordes de ríos, inundaciones, activación de quebradas y huaicos, con daños a personas, viviendas y actividades económicas.</p></div><h2 class="f-script c-emerald">Agricultura y pesca</h2><div class="bg-emerald-soft"><p class="f-geo">El exceso o la falta de lluvia, las temperaturas inusuales y los cambios en las condiciones marinas pueden afectar cultivos, ganado y recursos pesqueros. El resultado depende de la región y de la intensidad del episodio.</p></div><h2 class="f-mono c-amber">Infraestructura y economía</h2><div class="bg-amber-soft"><p class="f-italic">Carreteras, puentes, canales, viviendas, escuelas y redes de servicios pueden sufrir daños. Las reparaciones, la interrupción del trabajo y las pérdidas productivas pueden generar gastos importantes para las familias y el país.</p></div><h2 class="f-serif c-teal">Ecosistemas y biodiversidad</h2><div class="bg-teal-soft"><p class="f-geo">Los cambios de temperatura del mar y de las lluvias pueden alterar hábitats terrestres y marinos. Algunas especies cambian su distribución o disponibilidad de alimento; los efectos varían según el ecosistema.</p></div><h2 class="f-geo c-plum">Salud pública</h2><div class="bg-plum-soft"><p class="f-serif">Las emergencias pueden afectar el saneamiento, el acceso a servicios de salud y las condiciones ambientales. La vigilancia y la prevención ayudan a reducir riesgos.</p></div><div class="callout warning"><b class="f-mono c-coral">No todos los lugares viven lo mismo:</b> <span class="f-geo">en algunas zonas pueden aumentar las lluvias; en otras, disminuir. Por eso es importante atender la información oficial para cada región.</span></div>`
-},
-{
-  title:"Medidas preventivas",
-  tag:"Prevención",
-  banner:"linear-gradient(120deg,#18304d 0%,#1f6e55 62%,#48a985 100%)",
-  kickerColor:"#c9f5e4",
-  intro:"Prepararse antes, actuar con cuidado durante una emergencia y seguir las indicaciones oficiales después puede reducir riesgos.",
-  body:`<h2 class="f-geo c-emerald">Antes de una emergencia</h2><div class="bg-emerald-soft"><ul class="f-serif"><li>Identifica las zonas seguras, rutas de evacuación y puntos de reunión de tu localidad.</li><li>Prepara una mochila de emergencia familiar con agua, alimentos no perecibles, linterna, radio, botiquín, documentos protegidos y artículos necesarios.</li><li>Mantén limpios los techos, canaletas y drenajes, siempre con ayuda adulta y sin exponerte a lugares peligrosos.</li><li>Protege documentos y acuerda con tu familia cómo comunicarse y dónde reunirse.</li><li>Infórmate mediante autoridades y fuentes oficiales.</li></ul></div><h2 class="f-script c-coral">Durante lluvias intensas o inundaciones</h2><div class="bg-coral-soft"><ul class="f-geo"><li>Aléjate de quebradas, ríos crecidos, laderas inestables y zonas inundadas.</li><li>No intentes cruzar a pie, en bicicleta ni en vehículo una corriente de agua.</li><li>Si las autoridades indican evacuar, sigue la ruta señalada y las instrucciones de los adultos responsables.</li><li>Desconéctate de zonas eléctricas mojadas y no manipules cables caídos.</li></ul></div><h2 class="f-mono c-ocean">Después de la emergencia</h2><div class="bg-ocean-soft"><ul class="f-italic"><li>Regresa a casa solo cuando las autoridades indiquen que es seguro.</li><li>Evita tocar cables, agua estancada posiblemente contaminada o estructuras dañadas.</li><li>Usa agua segura y sigue las recomendaciones sanitarias oficiales.</li><li>Comunica daños o situaciones peligrosas a las autoridades correspondientes.</li></ul></div><div class="callout"><b class="f-script c-emerald">En familia:</b> <span class="f-serif">la prevención es más efectiva cuando todos conocen el plan y saben a quién acudir. Los menores deben seguir las indicaciones de adultos responsables y autoridades.</span></div><h2 class="f-serif c-indigo">Fuentes útiles en el Perú</h2><p class="f-mono">Consulta los avisos y recomendaciones actualizados de SENAMHI, INDECI y las instituciones oficiales de tu localidad.</p>`
-},
-{
-  title:"Fuentes de información",
-  tag:"Oficial",
-  banner:"linear-gradient(120deg,#123b78 0%,#1765b5 58%,#d99b1e 100%)",
-  kickerColor:"#ffe9a3",
-  intro:"Para aprender y tomar decisiones, consulta información científica y recomendaciones publicadas por instituciones oficiales.",
-  body:`<h2 class="f-serif c-ocean">Instituciones para consultar</h2><div class="sources bg-ocean-soft"><a class="f-geo" href="https://www.senamhi.gob.pe/" target="_blank" rel="noopener"><b class="f-mono">SENAMHI</b> — Servicio Nacional de Meteorología e Hidrología del Perú</a><a class="f-serif" href="https://www.enfen.gob.pe/" target="_blank" rel="noopener"><b class="f-mono">ENFEN</b> — Estudio Nacional del Fenómeno El Niño</a><a class="f-mono" href="https://www.gob.pe/indeci" target="_blank" rel="noopener"><b class="f-geo">INDECI</b> — Instituto Nacional de Defensa Civil</a><a class="f-italic" href="https://www.gob.pe/minam" target="_blank" rel="noopener"><b class="f-geo">MINAM</b> — Ministerio del Ambiente</a></div><h2 class="f-script c-amber">¿Cómo usar estas fuentes?</h2><div class="bg-amber-soft"><ul class="f-geo"><li>Revisa la fecha de publicación y si el aviso sigue vigente.</li><li>Comprueba a qué región o zona se refiere la información.</li><li>Distingue entre pronósticos, alertas, reportes y recomendaciones.</li><li>Compara la información con comunicados de otras instituciones oficiales.</li></ul></div><div class="callout"><b class="f-mono c-indigo">Nota:</b> <span class="f-serif">Esta página es un recurso educativo. Para alertas, pronósticos y decisiones de emergencia, sigue siempre las comunicaciones oficiales y las indicaciones de las autoridades locales.</span></div>`}
+const topics = [
+ {id:1,color:'#1765b5',icon:'🌊',title:'¿Qué es el Fenómeno del Niño?',short:'Conoce el cambio que comienza en el océano Pacífico.',lead:'Es un fenómeno climático-oceánico relacionado con el calentamiento anómalo de las aguas superficiales del océano Pacífico ecuatorial central y oriental, que modifica la circulación de la atmósfera y puede alterar el clima en distintas regiones.',content:`
+ <div class="content-grid">
+  <article class="info-card"><h2>Una conexión entre el mar y el clima</h2><p>El Niño forma parte del sistema climático conocido como <strong>El Niño-Oscilación del Sur (ENOS o ENSO)</strong>. Durante un episodio de El Niño, la temperatura del mar en una zona del Pacífico ecuatorial se mantiene más cálida de lo habitual y se producen cambios en los vientos, las nubes y las lluvias.</p><p>No significa simplemente que “todo el planeta se calienta”. Sus efectos dependen de la región, la época del año y la intensidad y duración del episodio.</p><div class="highlight"><strong>Idea clave:</strong> el océano y la atmósfera funcionan como un sistema conectado. Un cambio en uno puede influir en el otro.</div></article>
+  <aside class="visual-card"><div class="visual-icon">🌎</div><h3>El Pacífico ecuatorial</h3><p>Una enorme extensión de océano donde las variaciones de temperatura superficial pueden influir en patrones atmosféricos a gran escala.</p></aside>
+ </div>
+ <article class="info-card" style="margin-top:20px"><h2>El Niño, La Niña y condiciones neutrales</h2><div class="compare">
+  <div><h3>🔥 El Niño</h3><p>Las aguas superficiales del Pacífico ecuatorial central y oriental están más cálidas de lo habitual, según los criterios de seguimiento climático.</p></div>
+  <div><h3>❄️ La Niña</h3><p>En esa región del Pacífico, las aguas superficiales están más frías de lo habitual y se producen cambios relacionados en la atmósfera.</p></div>
+  <div><h3>🌤️ Neutral</h3><p>No se cumplen las condiciones oceánicas y atmosféricas características de El Niño ni de La Niña.</p></div>
+  <div><h3>📍 ¿Y en el Perú?</h3><p>También se vigila el calentamiento del Pacífico oriental y costero, porque puede tener efectos importantes en nuestro litoral.</p></div>
+ </div></article>`},
+ {id:2,color:'#35b8ea',icon:'🌀',title:'¿Cómo se produce?',short:'Descubre el papel de los vientos, el mar y la atmósfera.',lead:'El Niño se desarrolla cuando cambian las condiciones habituales del Pacífico tropical. Los vientos, la temperatura del mar y la circulación atmosférica interactúan y pueden reforzar esos cambios.',content:`
+ <article class="info-card"><h2>Primero: ¿qué ocurre normalmente?</h2><p>En condiciones habituales, los <strong>vientos alisios</strong> soplan de este a oeste cerca del ecuador. Empujan las aguas superficiales cálidas hacia el Pacífico occidental, cerca de Oceanía. En el Pacífico oriental, frente a Sudamérica, suele aflorar agua más fría desde zonas profundas.</p>
+ <div class="steps">
+  <div class="step"><b>01 · CONDICIONES HABITUALES</b><p>Los alisios desplazan el agua cálida hacia el oeste y favorecen el afloramiento de agua más fría en el este.</p></div>
+  <div class="step"><b>02 · CAMBIOS</b><p>Los vientos alisios pueden debilitarse y las aguas cálidas pueden desplazarse hacia el centro y el este del Pacífico.</p></div>
+  <div class="step"><b>03 · RESPUESTA ATMOSFÉRICA</b><p>Cambian la distribución del calor, la formación de nubes y los patrones de lluvia y viento.</p></div>
+ </div><div class="highlight"><strong>Importante:</strong> no todos los episodios evolucionan exactamente igual. El Niño se identifica mediante el seguimiento de indicadores del océano y la atmósfera.</div></article>
+ <div class="content-grid" style="margin-top:20px">
+  <article class="info-card"><h2>¿Qué son los vientos alisios?</h2><p>Son vientos que soplan de manera relativamente persistente en las regiones tropicales. En el Pacífico ecuatorial ayudan a mantener la distribución habitual de las aguas cálidas y frías.</p><h3>¿Qué cambia durante El Niño?</h3><p>Cuando los alisios se debilitan, el agua cálida puede avanzar hacia el este. La atmósfera responde a ese calentamiento y se reorganizan zonas de lluvia y circulación del aire.</p></article>
+  <aside class="visual-card"><div class="visual-icon">💨 🌊 ☀️</div><h3>Océano + atmósfera</h3><p>El Niño no es causado por un solo elemento: surge de la interacción entre el océano Pacífico y la atmósfera.</p></aside>
+ </div>`},
+.photo-credit{font-size:.76rem;color:#a9c6df;margin-top:12px}
+.photo-credit a{color:#d8efff}
+  @media(max-width:760px){
+ .marine-life{grid-template-columns:1fr 1fr}
+ .marine-card:first-child{grid-column:1/-1;min-height:190px}
+ .marine-card{min-height:145px}
+ .welcome{background-position:58% center}
+ .menu-screen,.topic-screen{background-attachment:scroll}
+}
+@media(max-width:430px){
+ .marine-life{gap:9px}
+ .marine-card{border-radius:16px}
+ .marine-card div{left:12px;bottom:12px}
+ .marine-card strong{font-size:.95rem}
+ .marine-card small{font-size:.76rem}
+}
+
+.topic-hero{transition:background-color .35s ease}
+
+/* Tierra 3D interactiva: giro manual, textura satelital real y volumen */
+.earth{
+  overflow:hidden;
+  background:#061a32!important;
+  animation:earthFloat 7s ease-in-out infinite!important;
+  cursor:grab;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+  box-shadow:0 0 0 1px rgba(190,235,255,.42),0 0 0 8px rgba(93,199,255,.045),0 0 76px rgba(55,188,245,.42);
+}
+.earth:active{cursor:grabbing}
+#earthCanvas{display:block;width:100%;height:100%;border-radius:50%}
+.earth:before{
+  z-index:2;
+  pointer-events:none;
+  background:
+   radial-gradient(ellipse at 29% 24%,rgba(255,255,255,.13),transparent 27%),
+   radial-gradient(ellipse at 73% 76%,rgba(0,7,24,.52),transparent 57%),
+   linear-gradient(90deg,rgba(2,15,35,.08),transparent 48%,rgba(0,8,25,.25));
+}
+.earth:after{
+  z-index:3;
+  pointer-events:none;
+  box-shadow:inset -18px -10px 34px rgba(0,5,20,.28),inset 2px 2px 16px rgba(184,237,255,.13);
+}
+.earth-hint{
+ position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);
+ color:#c8eaff;font-size:.76rem;letter-spacing:.03em;white-space:nowrap;
+ opacity:.82;text-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none;
+}
+@media(max-width:560px){.earth-hint{bottom:-29px;font-size:.69rem}}
+@media(prefers-reduced-motion:reduce){.earth{animation:none!important}}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+ <a class="brand" href="#" onclick="goHome();return false"><span class="brand-mark">🌊</span><span>EL NIÑO <span style="font-weight:500;opacity:.7">/ EXPLORA</span></span></a>
+ <div class="top-actions">
+  <button class="nav-btn" onclick="goHome()">Inicio</button>
+  <button class="nav-btn" onclick="showMenu()">Explorar</button>
+ </div>
+</header>
+
+<main>
+<section id="welcome" class="screen welcome">
+ <div class="welcome-copy">
+  <div class="eyebrow">Ciencia · Océano · Perú</div>
+  <h1>EL NIÑO:<br><span>un fenómeno,</span><br>muchas consecuencias.</h1>
+  <p>El océano y la atmósfera están conectados. Cuando sus condiciones cambian, también puede cambiar el clima y la vida de millones de personas. Descubre cómo sucede y por qué importa en el Perú.</p>
+  <button class="primary-btn" onclick="showMenu()">ENTRAR A EXPLORAR&nbsp; →</button>
+ </div>
+ <div class="welcome-art" aria-label="Ilustración decorativa de la Tierra">
+  <div class="orbit"></div><div class="orbit two"></div>
+  <div class="earth" id="earthGlobe" role="img" aria-label="Tierra tridimensional interactiva. Arrastra para girar el planeta manualmente.">
+    <canvas id="earthCanvas" aria-hidden="true"></canvas>
+   </div>
+  <div class="art-label one">☀️ Atmósfera</div><button class="art-label two" id="pacificFocus" type="button" aria-label="Orientar la Tierra hacia el océano Pacífico">🌊 Océano Pacífico</button>
+   <div class="earth-hint">↔ Toca y arrastra para girar</div>
+ </div>
+</section>
+
+<section id="menu" class="screen menu-screen hidden">
+ <div class="section-wrap">
+  <div class="section-heading">
+   <div class="eyebrow">Centro de exploración</div>
+   <h2>Un fenómeno, siete perspectivas</h2>
+   <p>Elige una burbuja para abrir su sección. Cada tema tiene su propio color y contenido para que puedas recorrerlo a tu ritmo.</p>
+  </div>
+  <div class="topic-grid" id="topicGrid"></div>
+  <div class="marine-life" aria-label="Fotografías de vida marina">
+   <article class="marine-card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1400" alt="Dos ballenas jorobadas nadando bajo el agua" loading="lazy">
+    <div><strong>Gigantes del Pacífico</strong><small>Ballenas jorobadas en su entorno marino</small></div>
+   </article>
+   <article class="marine-card">
+    <img src="https://images.unsplash.com/photo-1584267999791-0970eb9426e5?auto=format&fit=crop&w=1800&q=85" alt="Banco de peces nadando sobre un arrecife" loading="lazy">
+    <div><strong>Un océano lleno de vida</strong><small>Bancos de peces y ecosistemas marinos</small></div>
+   </article>
+   <article class="marine-card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Green-sea-turtle.jpg?width=900" alt="Tortuga marina verde nadando bajo el agua" loading="lazy">
+    <div><strong>Habitantes del mar</strong><small>Tortugas marinas y biodiversidad</small></div>
+   </article>
+   <article class="marine-card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dolphin_Ocean.jpg?width=1200" alt="Delfines nadando en el océano" loading="lazy">
+    <div><strong>Viajeros del océano</strong><small>Delfines desplazándose en grupo</small></div>
+   </article>
+   <article class="marine-card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Manta_Ray_-_Under.jpg?width=1200" alt="Mantarraya nadando bajo el agua" loading="lazy">
+    <div><strong>Alas bajo el agua</strong><small>Mantarrayas recorriendo el mar</small></div>
+   </article>
+   <article class="marine-card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/OCNMS_Sea_Lion_%2849743722337%29.jpg?width=1200" alt="Lobo marino nadando bajo el agua" loading="lazy">
+    <div><strong>Vecinos del Pacífico</strong><small>Lobos marinos en su ambiente natural</small></div>
+   </article>
+  </div>
+  <section class="facts-area">
+   <div class="facts-head"><div><div class="eyebrow" style="color:#83dcff">Pequeños grandes datos</div><h2>¿Sabías que...?</h2></div><p>Curiosidades para mirar el fenómeno desde otros ángulos.</p></div>
+   <div class="fact-card"><div class="fact-spark">✦</div><p id="factText" aria-live="polite"></p></div>
+   <div class="fact-controls"><button class="light-btn" onclick="changeFact(-1)">← Anterior</button><button class="light-btn" onclick="changeFact(1)">Otra curiosidad →</button></div>
+  </section>
+ </div>
+</section>
+
+<section id="topicScreen" class="screen topic-screen hidden">
+ <div class="topic-hero" id="topicHero">
+  <button class="back-btn" onclick="showMenu()">← Volver al menú</button>
+  <div class="topic-hero-inner"><div class="eyebrow" id="topicEyebrow"></div><h1 id="topicTitle"></h1><p id="topicLead"></p></div>
+ </div>
+ <div class="ocean-life-strip">
+  <div><strong>El océano Pacífico está lleno de vida</strong><span>Sus cambios también influyen en los ecosistemas y en las personas.</span></div>
+ </div>
+ <div class="topic-content" id="topicContent"></div>
+</section>
+</main>
+<footer class="footer"><strong>EL NIÑO: Un fenómeno, muchas consecuencias</strong><br>Proyecto educativo · Aprende, comprende y prepárate.
+ <div class="photo-credit">Fotografías: <a href="https://commons.wikimedia.org/wiki/File:Humpback_Whale_underwater_shot.jpg" target="_blank" rel="noopener noreferrer">ballenas (NOAA / Wikimedia Commons)</a> · <a href="https://unsplash.com/photos/school-of-fish-in-water-_FW7__h3MMA" target="_blank" rel="noopener noreferrer">banco de peces (Unsplash)</a> · <a href="https://commons.wikimedia.org/wiki/File:Green-sea-turtle.jpg" target="_blank" rel="noopener noreferrer">tortuga marina (U.S. Fish and Wildlife Service)</a> · <a href="https://commons.wikimedia.org/wiki/File:Dolphin_Ocean.jpg" target="_blank" rel="noopener noreferrer">delfines</a> · <a href="https://commons.wikimedia.org/wiki/File:Manta_Ray_-_Under.jpg" target="_blank" rel="noopener noreferrer">mantarraya</a> · <a href="https://commons.wikimedia.org/wiki/File:OCNMS_Sea_Lion_(49743722337).jpg" target="_blank" rel="noopener noreferrer">lobo marino (NOAA)</a> · <a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-topography-bathymetry/" target="_blank" rel="noopener noreferrer">textura de la Tierra (NASA Blue Marble)</a>.</div>
+ </footer>
+
+<script>
+const topics = [
+ {id:1,color:'#1765b5',icon:'🌊',title:'¿Qué es el Fenómeno del Niño?',short:'Conoce el cambio que comienza en el océano Pacífico.',lead:'Es un fenómeno climático-oceánico relacionado con el calentamiento anómalo de las aguas superficiales del océano Pacífico ecuatorial central y oriental, que modifica la circulación de la atmósfera y puede alterar el clima en distintas regiones.',content:`
+ <div class="content-grid">
+  <article class="info-card"><h2>Una conexión entre el mar y el clima</h2><p>El Niño forma parte del sistema climático conocido como <strong>El Niño-Oscilación del Sur (ENOS o ENSO)</strong>. Durante un episodio de El Niño, la temperatura del mar en una zona del Pacífico ecuatorial se mantiene más cálida de lo habitual y se producen cambios en los vientos, las nubes y las lluvias.</p><p>No significa simplemente que “todo el planeta se calienta”. Sus efectos dependen de la región, la época del año y la intensidad y duración del episodio.</p><div class="highlight"><strong>Idea clave:</strong> el océano y la atmósfera funcionan como un sistema conectado. Un cambio en uno puede influir en el otro.</div></article>
+  <aside class="visual-card"><div class="visual-icon">🌎</div><h3>El Pacífico ecuatorial</h3><p>Una enorme extensión de océano donde las variaciones de temperatura superficial pueden influir en patrones atmosféricos a gran escala.</p></aside>
+ </div>
+ <article class="info-card" style="margin-top:20px"><h2>El Niño, La Niña y condiciones neutrales</h2><div class="compare">
+  <div><h3>🔥 El Niño</h3><p>Las aguas superficiales del Pacífico ecuatorial central y oriental están más cálidas de lo habitual, según los criterios de seguimiento climático.</p></div>
+  <div><h3>❄️ La Niña</h3><p>En esa región del Pacífico, las aguas superficiales están más frías de lo habitual y se producen cambios relacionados en la atmósfera.</p></div>
+  <div><h3>🌤️ Neutral</h3><p>No se cumplen las condiciones oceánicas y atmosféricas características de El Niño ni de La Niña.</p></div>
+  <div><h3>📍 ¿Y en el Perú?</h3><p>También se vigila el calentamiento del Pacífico oriental y costero, porque puede tener efectos importantes en nuestro litoral.</p></div>
+ </div></article>`},
+ {id:2,color:'#35b8ea',icon:'🌀',title:'¿Cómo se produce?',short:'Descubre el papel de los vientos, el mar y la atmósfera.',lead:'El Niño se desarrolla cuando cambian las condiciones habituales del Pacífico tropical. Los vientos, la temperatura del mar y la circulación atmosférica interactúan y pueden reforzar esos cambios.',content:`
+ <article class="info-card"><h2>Primero: ¿qué ocurre normalmente?</h2><p>En condiciones habituales, los <strong>vientos alisios</strong> soplan de este a oeste cerca del ecuador. Empujan las aguas superficiales cálidas hacia el Pacífico occidental, cerca de Oceanía. En el Pacífico oriental, frente a Sudamérica, suele aflorar agua más fría desde zonas profundas.</p>
+ <div class="steps">
+  <div class="step"><b>01 · CONDICIONES HABITUALES</b><p>Los alisios desplazan el agua cálida hacia el oeste y favorecen el afloramiento de agua más fría en el este.</p></div>
+  <div class="step"><b>02 · CAMBIOS</b><p>Los vientos alisios pueden debilitarse y las aguas cálidas pueden desplazarse hacia el centro y el este del Pacífico.</p></div>
+  <div class="step"><b>03 · RESPUESTA ATMOSFÉRICA</b><p>Cambian la distribución del calor, la formación de nubes y los patrones de lluvia y viento.</p></div>
+ </div><div class="highlight"><strong>Importante:</strong> no todos los episodios evolucionan exactamente igual. El Niño se identifica mediante el seguimiento de indicadores del océano y la atmósfera.</div></article>
+ <div class="content-grid" style="margin-top:20px">
+  <article class="info-card"><h2>¿Qué son los vientos alisios?</h2><p>Son vientos que soplan de manera relativamente persistente en las regiones tropicales. En el Pacífico ecuatorial ayudan a mantener la distribución habitual de las aguas cálidas y frías.</p><h3>¿Qué cambia durante El Niño?</h3><p>Cuando los alisios se debilitan, el agua cálida puede avanzar hacia el este. La atmósfera responde a ese calentamiento y se reorganizan zonas de lluvia y circulación del aire.</p></article>
+  <aside class="visual-card"><div class="visual-icon">💨 🌊 ☀️</div><h3>Océano + atmósfera</h3><p>El Niño no es causado por un solo elemento: surge de la interacción entre el océano Pacífico y la atmósfera.</p></aside>
+ </div>`},
+   </div>`},
+ {id:3,color:'#16a085',icon:'💧',title:'Necesidades primarias afectadas',short:'Agua, alimentación, salud y vivienda.',lead:'Las necesidades primarias son esenciales para vivir. Un episodio intenso puede afectar su disponibilidad o acceso, especialmente cuando provoca lluvias extremas, inundaciones, deslizamientos o interrupciones de servicios.',content:`
+ <div class="content-grid">
+  <article class="info-card"><h2>¿Qué puede verse afectado?</h2><p>Los impactos no son iguales en todas las localidades. Dependen de la intensidad del evento, la vulnerabilidad del lugar y la preparación de sus servicios e infraestructura.</p>
+   <div class="mini-grid">
+    <div class="mini-item"><strong>💧 Agua potable</strong><span>Las inundaciones pueden afectar captaciones, tuberías o plantas de tratamiento y dificultar el acceso a agua segura.</span></div>
+    <div class="mini-item"><strong>🥗 Alimentación</strong><span>Las pérdidas agrícolas, daños en caminos y alteraciones de la pesca pueden afectar el abastecimiento y los ingresos.</span></div>
+    <div class="mini-item"><strong>🩺 Salud</strong><span>El daño a centros de salud y servicios básicos dificulta la atención. El agua estancada y las condiciones ambientales pueden elevar ciertos riesgos.</span></div>
+    <div class="mini-item"><strong>🏠 Vivienda</strong><span>Las lluvias intensas, inundaciones y movimientos en masa pueden dañar viviendas ubicadas en zonas expuestas.</span></div>
+   </div>
+  </article>
+  <aside class="visual-card"><div class="visual-icon">🏘️</div><h3>La vida cotidiana</h3><p>Cuando se interrumpen servicios básicos, las familias pueden enfrentar varias dificultades al mismo tiempo.</p></aside>
+ </div>
+ <article class="info-card" style="margin-top:20px"><h2>Un ejemplo de cómo se conectan</h2><p>Si una inundación daña una vía, puede retrasar el traslado de alimentos y medicinas. Si además afecta una tubería, una comunidad podría tener dificultades para conseguir agua potable. Por eso, proteger los servicios básicos ayuda a reducir los impactos.</p></article>`},
+ {id:4,color:'#8064c8',icon:'📚',title:'Necesidades secundarias afectadas',short:'Educación, transporte, comunicación y actividades.',lead:'Las necesidades secundarias ayudan al bienestar y al funcionamiento de la sociedad. Aunque no siempre son indispensables para sobrevivir de inmediato, sostienen la educación, el trabajo, la economía y la vida comunitaria.',content:`
+ <div class="content-grid">
+  <article class="info-card"><h2>Actividades que pueden interrumpirse</h2><div class="mini-grid">
+   <div class="mini-item"><strong>📚 Educación</strong><span>Daños en colegios, caminos intransitables o riesgos para la comunidad pueden suspender las clases temporalmente.</span></div>
+   <div class="mini-item"><strong>🚌 Transporte</strong><span>Inundaciones y deslizamientos pueden bloquear carreteras, puentes y rutas de transporte.</span></div>
+   <div class="mini-item"><strong>📡 Comunicación</strong><span>Daños en redes eléctricas o infraestructura pueden dificultar el acceso a internet y telefonía.</span></div>
+   <div class="mini-item"><strong>🛒 Comercio</strong><span>La interrupción de vías, servicios y producción puede afectar mercados, negocios y empleos.</span></div>
+   <div class="mini-item"><strong>⚽ Recreación</strong><span>Parques, espacios deportivos y actividades culturales pueden cerrarse por daños o prevención.</span></div>
+   <div class="mini-item"><strong>👥 Vida comunitaria</strong><span>Las reuniones, celebraciones y actividades vecinales pueden modificarse por seguridad o dificultades de traslado.</span></div>
+  </div></article>
+  <aside class="visual-card"><div class="visual-icon">🏫 🚍</div><h3>Una comunidad conectada</h3><p>Las escuelas, vías, mercados y redes de comunicación dependen de infraestructura que también puede ser vulnerable.</p></aside>
+ </div>
+ <article class="info-card" style="margin-top:20px"><h2>¿Por qué importa?</h2><p>Una interrupción en el transporte puede afectar la asistencia escolar y el comercio al mismo tiempo. Esto demuestra que las necesidades de una sociedad están relacionadas: cuando un servicio falla, otros también pueden verse perjudicados.</p></article>`},
+ {id:5,color:'#e65b36',icon:'🇵🇪',title:'Consecuencias en el Perú',short:'Lluvias, inundaciones y cambios en distintas actividades.',lead:'En el Perú, los impactos varían según la zona y las características de cada episodio. El calentamiento del Pacífico oriental puede favorecer lluvias intensas en partes de la costa, pero no todas las regiones experimentan los mismos efectos.',content:`
+ <div class="content-grid">
+  <article class="info-card"><h2>Algunos efectos posibles</h2><ul>
+   <li><strong>Lluvias intensas:</strong> pueden presentarse en sectores de la costa, especialmente en el norte durante determinados episodios.</li>
+   <li><strong>Inundaciones y desbordes:</strong> el aumento del caudal puede afectar poblaciones, cultivos e infraestructura cercanos a ríos.</li>
+   <li><strong>Huaicos y deslizamientos:</strong> las lluvias pueden activar movimientos de lodo, rocas y tierra en zonas vulnerables.</li>
+   <li><strong>Agricultura:</strong> el exceso de agua, las altas temperaturas o cambios en el calendario de lluvias pueden perjudicar cultivos.</li>
+   <li><strong>Pesca y ecosistemas marinos:</strong> el calentamiento del mar modifica la distribución y disponibilidad de algunas especies.</li>
+   <li><strong>Infraestructura y economía:</strong> daños en carreteras, puentes, viviendas y servicios pueden generar pérdidas y retrasos.</li>
+  </ul></article>
+  <aside class="visual-card"><div class="visual-icon">🌧️ 🏞️</div><h3>Un país de muchos climas</h3><p>La costa, los Andes y la Amazonía tienen condiciones geográficas diferentes. Por eso, los impactos de El Niño no son uniformes.</p></aside>
+ </div>
+ <article class="info-card" style="margin-top:20px"><h2>¿Afecta igual a todo el Perú?</h2><div class="compare">
+  <div><h3>🌊 Costa</h3><p>En episodios con fuerte calentamiento del Pacífico oriental, algunas zonas costeras —sobre todo del norte— pueden recibir lluvias muy intensas.</p></div>
+  <div><h3>⛰️ Andes</h3><p>Los efectos en las lluvias pueden variar según la región y el episodio. En algunas zonas pueden presentarse periodos secos y en otras lluvias distintas a lo habitual.</p></div>
+  <div><h3>🌳 Amazonía</h3><p>Puede experimentar cambios en las lluvias y temperaturas, pero la señal y sus efectos varían de una zona a otra.</p></div>
+  <div><h3>🐟 Mar peruano</h3><p>El calentamiento puede alterar nutrientes, hábitats y la distribución de especies marinas, con consecuencias para la pesca.</p></div>
+ </div><div class="highlight"><strong>Dato importante:</strong> no se debe afirmar que El Niño siempre provoca sequía en toda la sierra o lluvias en todo el país. Los efectos dependen del lugar y del episodio.</div></article>`},
+ {id:6,color:'#32965d',icon:'🛡️',title:'Medidas preventivas',short:'Prepararnos reduce riesgos y protege a la comunidad.',lead:'No podemos evitar que ocurra El Niño, pero sí podemos reducir los daños. La prevención combina información confiable, planificación, cuidado de la infraestructura y organización familiar y comunitaria.',content:`
+ <div class="content-grid">
+  <article class="info-card"><h2>¿Qué podemos hacer?</h2><div class="mini-grid">
+   <div class="mini-item"><strong>🏠 En casa</strong><span>Identificar zonas seguras, proteger documentos importantes y preparar una mochila de emergencia según las indicaciones oficiales.</span></div>
+   <div class="mini-item"><strong>🧹 En la comunidad</strong><span>No arrojar basura a ríos, quebradas o drenajes. Participar en acciones organizadas de limpieza segura.</span></div>
+   <div class="mini-item"><strong>📻 Mantenerse informado</strong><span>Consultar avisos de SENAMHI, INDECI y autoridades locales. Evitar difundir rumores.</span></div>
+   <div class="mini-item"><strong>🗺️ Conocer las rutas</strong><span>Ubicar rutas de evacuación y zonas seguras indicadas por las autoridades de la localidad.</span></div>
+   <div class="mini-item"><strong>🏫 En el colegio</strong><span>Conocer el plan de gestión del riesgo, puntos de encuentro y procedimientos de comunicación.</span></div>
+   <div class="mini-item"><strong>🤝 Ayudar responsablemente</strong><span>Compartir información verificada y seguir las indicaciones de los equipos de emergencia.</span></div>
+  </div></article>
+  <aside class="visual-card"><div class="visual-icon">🎒</div><h3>Prepararse es actuar antes</h3><p>La preparación funciona mejor cuando se organiza con anticipación y considera los riesgos reales de cada localidad.</p></aside>
+ </div>
+ <article class="info-card" style="margin-top:20px"><h2>Tres momentos para reducir el riesgo</h2><div class="steps">
+  <div class="step"><b>ANTES · PREVENIR Y PREPARAR</b><p>Informarse, revisar el entorno, planificar y mantener rutas y espacios seguros.</p></div>
+  <div class="step"><b>DURANTE · PROTEGERSE</b><p>Seguir alertas e indicaciones oficiales. Alejarse de ríos crecidos, quebradas y zonas inundadas.</p></div>
+  <div class="step"><b>DESPUÉS · RECUPERARSE</b><p>Regresar solo cuando las autoridades lo indiquen y evitar cables caídos o estructuras dañadas.</p></div>
+ </div><div class="highlight"><strong>Recuerda:</strong> nunca intentes cruzar a pie o en vehículo una corriente de agua. Ante una emergencia, sigue las indicaciones de las autoridades y los servicios de respuesta.</div></article>`},
+ {id:7,color:'#52657d',icon:'🔎',title:'Fuentes de información',short:'Instituciones y recursos para seguir aprendiendo.',lead:'La información científica y las alertas oficiales permiten comprender el fenómeno y tomar decisiones responsables. Estas instituciones publican datos, reportes y recomendaciones.',content:`
+ <article class="info-card"><h2>Consulta fuentes confiables</h2><p>Para trabajos escolares y para informarte sobre las condiciones del clima, prioriza organismos científicos y autoridades oficiales.</p>
+  <div class="source-list">
+   <a class="source-link" href="https://www.senamhi.gob.pe/" target="_blank" rel="noopener noreferrer"><div><strong>SENAMHI · Perú</strong><small>Información meteorológica, pronósticos, avisos y monitoreo climático.</small></div><span>↗</span></a>
+   <a class="source-link" href="https://www.gob.pe/imarpe" target="_blank" rel="noopener noreferrer"><div><strong>IMARPE · Perú</strong><small>Investigación científica del mar peruano y sus recursos.</small></div><span>↗</span></a>
+   <a class="source-link" href="https://www.gob.pe/indeci" target="_blank" rel="noopener noreferrer"><div><strong>INDECI · Perú</strong><small>Recomendaciones de preparación y gestión del riesgo de desastres.</small></div><span>↗</span></a>
+   <a class="source-link" href="https://www.gob.pe/" target="_blank" rel="noopener noreferrer"><div><strong>Gobierno del Perú</strong><small>Portal oficial para localizar comunicados y servicios de las entidades públicas.</small></div><span>↗</span></a>
+   <a class="source-link" href="https://www.noaa.gov/education/resource-collections/weather-atmosphere/el-nino" target="_blank" rel="noopener noreferrer"><div><strong>NOAA · Estados Unidos</strong><small>Material educativo sobre El Niño y su relación con el océano y la atmósfera.</small></div><span>↗</span></a>
+   <a class="source-link" href="https://www.climate.gov/enso" target="_blank" rel="noopener noreferrer"><div><strong>NOAA Climate.gov · ENOS</strong><small>Explicaciones y seguimiento del fenómeno El Niño-Oscilación del Sur.</small></div><span>↗</span></a>
+  </div>
+  <div class="highlight"><strong>Consejo para investigar:</strong> revisa la fecha de publicación, identifica qué región analiza el informe y distingue entre pronóstico, aviso y explicación científica.</div>
+ </article>`}
 ];
 
-const colors=["#bcebff","#ffd447","#a8e3d0","#ffd2b7","#c9d8ff","#b9e8f3","#ffe7a1"];
-const summaries=["Conoce qué es y dónde se desarrolla.","Descubre el papel del océano y los vientos.","Agua, alimentación, vivienda y salud.","Educación, transporte, comunicación y recreación.","Impactos sociales, económicos y ambientales.","Qué hacer antes, durante y después.","Organismos oficiales y recursos confiables."];
-
-const grid=document.getElementById("bubbleGrid");
-const topicJump=document.getElementById("topicJump");
-const detailPager=document.getElementById("detailPager");
-
-sections.forEach((s,i)=>{
-  const b=document.createElement("button");
-  b.className=`bubble q-${i+1}`;
-  b.style.setProperty("--bubble",colors[i]);
-  b.innerHTML=`<span class="arrow">↗</span><div><div class="bubble-top"><span class="num">${String(i+1).padStart(2,"0")}</span><span class="bubble-tag">${s.tag}</span></div><strong>${s.title}</strong><small>${summaries[i]}</small></div>`;
-  b.addEventListener("click",()=>openSection(i));
-  grid.appendChild(b);
-
-  const jumpBtn=document.createElement("button");
-  jumpBtn.type="button";
-  jumpBtn.className="topic-item-btn";
-  jumpBtn.textContent=`${String(i+1).padStart(2,"0")}. ${s.title}`;
-  jumpBtn.addEventListener("click",()=>openSection(i));
-  topicJump.appendChild(jumpBtn);
+const facts=[
+"El nombre «El Niño» fue utilizado por pescadores de la costa de Sudamérica para referirse a la aparición de aguas cálidas cerca de Navidad, en alusión al Niño Jesús.",
+"El Niño no es una tormenta ni un fenómeno que ocurre solamente en el Perú: es parte de un patrón climático del océano Pacífico tropical que puede influir en distintas regiones del mundo.",
+"El océano almacena y transporta enormes cantidades de energía. Por eso, los cambios de temperatura del mar pueden influir en la circulación de la atmósfera.",
+"El Niño y La Niña son fases opuestas del sistema ENOS, pero sus impactos no son simplemente imágenes invertidas: cada episodio puede tener efectos diferentes según la región.",
+"En el Perú se monitorean tanto las condiciones del Pacífico ecuatorial como las del Pacífico oriental y costero, porque ambas son importantes para comprender los posibles impactos.",
+"Prepararse no significa predecir exactamente cada lluvia. Significa conocer los riesgos locales, atender las alertas y organizarse antes de que ocurra una emergencia."
+];
+const topicBackgrounds = [
+ "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1600",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/Dolphin_Ocean.jpg?width=1600",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/Green-sea-turtle.jpg?width=1600",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/Chromis_reef_fish_and_staghorn_coral_underwater_scenic.jpg?width=1600",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/Manta_Ray_-_Under.jpg?width=1600",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/OCNMS_Sea_Lion_%2849743722337%29.jpg?width=1600",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/An_underwater_shot_of_a_reef.jpg?width=1600"
+];
+let factIndex=0,currentTopic=0;
+const grid=document.getElementById('topicGrid');
+topics.forEach((t,i)=>{
+ const b=document.createElement('button');b.className='topic-bubble';b.style.setProperty('--topic',t.color);
+ b.innerHTML=`<span class="num">0${t.id} / 07</span><span class="topic-icon">${t.icon}</span><strong>${t.title}</strong><small>${t.short}</small>`;
+ b.addEventListener('click',()=>openTopic(i));grid.appendChild(b);
 });
-
-function syncTopicNav(idx){
-  topicJump.querySelectorAll(".topic-item-btn").forEach((btn,i)=>{
-    btn.classList.toggle("active-topic",i===idx);
-  });
-  const prevIdx=idx-1;
-  const nextIdx=idx+1;
-  detailPager.innerHTML=`
-    <button type="button" class="pager-btn" ${prevIdx<0?"disabled":""} onclick="${prevIdx>=0?`openSection(${prevIdx})`:""}">← ${prevIdx>=0?sections[prevIdx].title:"Inicio"}</button>
-    <button type="button" class="pager-btn" ${nextIdx>=sections.length?"disabled":""} onclick="${nextIdx<sections.length?`openSection(${nextIdx})`:""}">${nextIdx<sections.length?sections[nextIdx].title:"Fin"} →</button>
-  `;
+function showOnly(id){['welcome','menu','topicScreen'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id));window.scrollTo({top:0,behavior:'smooth'});}
+function goHome(){showOnly('welcome');}
+function showMenu(){showOnly('menu');}
+function openTopic(i){
+ currentTopic=i;const t=topics[i];const hero=document.getElementById('topicHero');
+ hero.style.setProperty('--topic',t.color);
+ hero.style.backgroundImage=`linear-gradient(105deg, color-mix(in srgb, ${t.color} 88%, #071d3b), rgba(7,29,59,.48)), url("${topicBackgrounds[i]}")`;
+ hero.style.backgroundPosition='center';
+ hero.style.backgroundSize='cover';
+ document.getElementById('topicEyebrow').textContent=`SECCIÓN 0${t.id} · 07`;
+ document.getElementById('topicTitle').textContent=t.title;
+ document.getElementById('topicLead').textContent=t.lead;
+ document.getElementById('topicContent').innerHTML=t.content+`<div class="bottom-nav"><button onclick="showMenu()">← Volver a explorar</button><button onclick="openTopic(${(i+1)%topics.length})">Siguiente sección →</button></div>`;
+ showOnly('topicScreen');
 }
-
-function openSection(i){
-  const idx=Number(i);
-  const s=sections[idx];
-  if(!s)return;
-  const banner=document.getElementById("detailBanner");
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("detail").classList.add("active");
-  banner.style.setProperty("--banner-bg",s.banner);
-  banner.style.setProperty("--banner-kicker",s.kickerColor);
-  document.getElementById("detailKicker").textContent=`APARTADO ${idx+1} DE 7`;
-  document.getElementById("detailTitle").textContent=s.title;
-  document.getElementById("detailIntro").textContent=s.intro;
-  document.getElementById("detailBody").innerHTML=s.body;
-  syncTopicNav(idx);
-  window.scrollTo({top:0,behavior:"smooth"});
-  history.replaceState(null,"","#tema-"+(idx+1));
-}
-
-function showHome(){
-  document.getElementById("detail").classList.remove("active");
-  document.getElementById("home").classList.remove("hidden");
-  window.scrollTo({top:0,behavior:"smooth"});
-  history.replaceState(null,"",location.pathname);
-}
-
-function scrollToMenu(){
-  document.getElementById("menu").scrollIntoView({behavior:"smooth"});
-}
-
-window.addEventListener("load",()=>setTimeout(()=>document.getElementById("loading").classList.add("hide"),500));
+function changeFact(dir){factIndex=(factIndex+dir+facts.length)%facts.length;document.getElementById('factText').textContent=facts[factIndex];}
+changeFact(0);
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+ const host=document.getElementById('earthGlobe');
+ const canvas=document.getElementById('earthCanvas');
+ if(!host||!canvas||!window.THREE)return;
+
+ const scene=new THREE.Scene();
+ const camera=new THREE.PerspectiveCamera(34,1,.1,100);
+ camera.position.z=3.15;
+
+ const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'low-power'});
+ renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.6));
+ renderer.setClearColor(0x000000,0);
+ renderer.outputEncoding=THREE.sRGBEncoding;
+ renderer.toneMapping=THREE.ACESFilmicToneMapping;
+ renderer.toneMappingExposure=0.92;
+
+ const globe=new THREE.Group();
+ scene.add(globe);
+
+ const geometry=new THREE.SphereGeometry(1,96,96);
+ const material=new THREE.MeshPhongMaterial({
+   color:0xffffff,
+   shininess:3,
+   specular:new THREE.Color(0x111c28)
+ });
+ const earth=new THREE.Mesh(geometry,material);
+ globe.add(earth);
+
+ // NASA Blue Marble: Next Generation, textura global de topografía y océanos.
+ const textureURL='https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-topography/january/world.topo.200401.3x5400x2700.jpg';
+ const loader=new THREE.TextureLoader();
+ loader.setCrossOrigin('anonymous');
+ loader.load(textureURL,function(texture){
+   texture.encoding=THREE.sRGBEncoding;
+   texture.anisotropy=renderer.capabilities.getMaxAnisotropy();
+   material.map=texture;
+   material.needsUpdate=true;
+ },undefined,function(){
+   host.classList.add('earth-texture-error');
+ });
+
+ // Iluminación cinematográfica más equilibrada:
+ // una fuente solar lateral, relleno ambiental bajo y nada de focos frontales.
+ scene.add(new THREE.AmbientLight(0x71869a,0.22));
+ const sun=new THREE.DirectionalLight(0xffedcf,1.12);
+ sun.position.set(-3.8,2.6,4.8);
+ scene.add(sun);
+ const skyFill=new THREE.HemisphereLight(0x789bb8,0x101b2b,0.12);
+ scene.add(skyFill);
+ const blueFill=new THREE.DirectionalLight(0x28618a,0.055);
+ blueFill.position.set(3,-1.5,-3);
+ scene.add(blueFill);
+
+ // Halo atmosférico sutil, separado de la superficie.
+ const atmosphereGeo=new THREE.SphereGeometry(1.035,64,64);
+ const atmosphereMat=new THREE.ShaderMaterial({
+  vertexShader:'varying vec3 vNormal; varying vec3 vView; void main(){vNormal=normalize(normalMatrix*normal); vec4 mvPosition=modelViewMatrix*vec4(position,1.0); vView=normalize(-mvPosition.xyz); gl_Position=projectionMatrix*mvPosition;}',
+  fragmentShader:'varying vec3 vNormal; varying vec3 vView; void main(){float rim=pow(1.0-max(dot(normalize(vNormal),normalize(vView)),0.0),2.25); gl_FragColor=vec4(0.30,0.62,0.86,rim*0.16);}',
+  blending:THREE.AdditiveBlending,transparent:true,depthWrite:false
+ });
+ const atmosphere=new THREE.Mesh(atmosphereGeo,atmosphereMat);
+ globe.add(atmosphere);
+
+ // Capa de nubes: gira muy lentamente sobre la superficie, pero acompaña el giro manual.
+ const cloudGeo=new THREE.SphereGeometry(1.009,96,96);
+ const cloudMat=new THREE.MeshPhongMaterial({
+   color:0xffffff, transparent:true, opacity:0.30,
+   depthWrite:false, shininess:0
+ });
+ const clouds=new THREE.Mesh(cloudGeo,cloudMat);
+ clouds.renderOrder=2;
+ globe.add(clouds);
+ loader.load('https://threejs.org/examples/textures/planets/earth_clouds_1024.png',function(texture){
+   texture.encoding=THREE.sRGBEncoding;
+   texture.anisotropy=renderer.capabilities.getMaxAnisotropy();
+   cloudMat.map=texture;
+   cloudMat.needsUpdate=true;
+ });
+
+ // Luces de ciudades en la cara nocturna: se revelan solo donde no llega la luz solar.
+ const nightGeo=new THREE.SphereGeometry(1.0025,96,96);
+ const nightTextureURL='https://threejs.org/examples/textures/planets/earth_lights_2048.png';
+ const nightMat=new THREE.ShaderMaterial({
+   uniforms:{uNightMap:{value:null},uSunDirection:{value:new THREE.Vector3(-0.5,0.4,0.8)}},
+   vertexShader:'varying vec2 vUv; varying vec3 vNormalLocal; void main(){vUv=uv; vNormalLocal=normalize(normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+   fragmentShader:'uniform sampler2D uNightMap; uniform vec3 uSunDirection; varying vec2 vUv; varying vec3 vNormalLocal; void main(){float day=dot(normalize(vNormalLocal),normalize(uSunDirection)); float night=1.0-smoothstep(-0.12,0.20,day); vec4 lights=texture2D(uNightMap,vUv); float glow=lights.r*night; gl_FragColor=vec4(vec3(1.0,0.66,0.30)*glow,glow*0.82);}',
+   transparent:true, blending:THREE.AdditiveBlending, depthWrite:false
+ });
+ const nightLights=new THREE.Mesh(nightGeo,nightMat);
+ nightLights.renderOrder=1;
+ globe.add(nightLights);
+ loader.load(nightTextureURL,function(texture){
+   texture.encoding=THREE.sRGBEncoding;
+   nightMat.uniforms.uNightMap.value=texture;
+   nightMat.needsUpdate=true;
+ });
+
+ // Orientación inicial: el Pacífico y Sudamérica quedan visibles.
+ globe.rotation.set(-.12,2.35,0);
+
+ let dragging=false,lastX=0,lastY=0,velocityX=0,velocityY=0;
+ host.addEventListener('pointerdown',function(e){
+   dragging=true;lastX=e.clientX;lastY=e.clientY;velocityX=velocityY=0;
+   host.setPointerCapture(e.pointerId);
+ });
+ host.addEventListener('pointermove',function(e){
+   if(!dragging)return;
+   const dx=e.clientX-lastX,dy=e.clientY-lastY;
+   velocityX=dx*.006;velocityY=dy*.0045;
+   globe.rotation.y+=velocityX;
+   globe.rotation.x=Math.max(-1.15,Math.min(1.15,globe.rotation.x+velocityY));
+   lastX=e.clientX;lastY=e.clientY;
+ });
+ function stopDrag(){dragging=false}
+ host.addEventListener('pointerup',stopDrag);
+ host.addEventListener('pointercancel',stopDrag);
+ host.addEventListener('lostpointercapture',stopDrag);
+
+ // La etiqueta del Pacífico devuelve suavemente la cámara a la vista inicial.
+ const pacificButton=document.getElementById('pacificFocus');
+ let focusTarget=null;
+ if(pacificButton){
+   pacificButton.addEventListener('click',function(){
+     focusTarget={x:-.12,y:2.35,z:0};
+     velocityX=velocityY=0;
+   });
+ }
+
+ function resize(){
+   const w=Math.max(1,host.clientWidth),h=Math.max(1,host.clientHeight);
+   renderer.setSize(w,h,false);
+   camera.aspect=w/h;
+   camera.updateProjectionMatrix();
+ }
+ if('ResizeObserver' in window){new ResizeObserver(resize).observe(host)}else{window.addEventListener('resize',resize)}
+ resize();
+
+ function animate(){
+   requestAnimationFrame(animate);
+   if(!dragging){
+     if(focusTarget){
+       globe.rotation.x+=(focusTarget.x-globe.rotation.x)*.055;
+       globe.rotation.y+=(focusTarget.y-globe.rotation.y)*.055;
+       globe.rotation.z+=(focusTarget.z-globe.rotation.z)*.055;
+       if(Math.abs(focusTarget.x-globe.rotation.x)<.001 && Math.abs(focusTarget.y-globe.rotation.y)<.001){
+         globe.rotation.set(focusTarget.x,focusTarget.y,focusTarget.z);
+         focusTarget=null;
+       }
+     }else{
+       globe.rotation.y+=velocityX;
+       globe.rotation.x=Math.max(-1.15,Math.min(1.15,globe.rotation.x+velocityY));
+       velocityX*=.94;velocityY*=.94;
+       if(Math.abs(velocityX)<.00008)velocityX=0;
+       if(Math.abs(velocityY)<.00008)velocityY=0;
+     }
+   }
+   clouds.rotation.y+=0.00012;
+   globe.updateMatrixWorld(true);
+   const sunLocal=sun.position.clone().normalize().applyQuaternion(globe.quaternion.clone().invert());
+   nightMat.uniforms.uSunDirection.value.copy(sunLocal);
+   renderer.render(scene,camera);
+ }
+ animate();
+})();
+</script>
+
 </body>
 </html>
