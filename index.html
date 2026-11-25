@@ -17,7 +17,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden}
 button,a{font:inherit}
 button{cursor:pointer}
 button:focus-visible,a:focus-visible{outline:3px solid #f4bd50;outline-offset:4px}
@@ -32,7 +32,14 @@ button:focus-visible,a:focus-visible{outline:3px solid #f4bd50;outline-offset:4p
 .eyebrow{font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em;font-size:.73rem;font-weight:500}
 h1,h2,h3,p{margin-top:0}
 h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
-.welcome{background:radial-gradient(ellipse at 76% 45%,#174b86 0%,#0b2d59 37%,#071d3b 76%);color:white;min-height:calc(100vh - 72px);display:grid;grid-template-columns:1.05fr .95fr;align-items:center;padding:clamp(38px,7vw,100px) clamp(22px,8vw,120px);gap:30px;overflow:hidden;position:relative}
+
+.welcome{
+ background:
+  linear-gradient(90deg,rgba(4,20,43,.97) 0%,rgba(5,29,59,.88) 48%,rgba(5,29,59,.48) 100%),
+  url('https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1400') center 48%/cover no-repeat,
+  radial-gradient(ellipse at 76% 45%,#174b86 0%,#0b2d59 37%,#071d3b 76%);
+ color:white;min-height:calc(100vh - 72px);display:grid;grid-template-columns:1.05fr .95fr;align-items:center;padding:clamp(38px,7vw,100px) clamp(22px,8vw,120px);gap:30px;overflow:hidden;position:relative
+}
 .welcome:before,.welcome:after{content:"";position:absolute;border:1px solid rgba(110,203,255,.12);border-radius:50%;width:540px;height:540px;right:2%;top:5%;pointer-events:none}
 .welcome:after{width:680px;height:680px;right:-3%;top:-4%}
 .welcome-copy{position:relative;z-index:2;max-width:660px}
@@ -42,24 +49,54 @@ h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
 .welcome p{font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.8;color:#d3e7f8;max-width:570px}
 .primary-btn{border:0;border-radius:999px;background:linear-gradient(100deg,#42c7ed,#2584d5);color:#062347;font-weight:900;letter-spacing:.08em;padding:16px 28px;margin-top:18px;box-shadow:0 12px 30px rgba(28,161,220,.25);transition:.2s}
 .primary-btn:hover{transform:translateY(-3px);box-shadow:0 16px 35px rgba(28,161,220,.35)}
-.welcome-art{position:relative;z-index:1;display:grid;place-items:center;min-height:420px}
-.earth{width:min(37vw,410px);aspect-ratio:1;border-radius:50%;position:relative;background:radial-gradient(circle at 32% 25%,#78e1ff 0,#2d9cd8 28%,#14518c 63%,#082b58 100%);box-shadow:inset -28px -25px 50px rgba(0,0,0,.35),0 0 70px rgba(55,188,245,.25);animation:float 6s ease-in-out infinite}
-.earth:before{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(120deg,transparent 45%,rgba(3,19,44,.55) 100%)}
-.continent{position:absolute;background:#61bd91;opacity:.95;filter:drop-shadow(0 2px 2px rgba(0,0,0,.12))}
-.continent.a{width:28%;height:38%;left:19%;top:18%;border-radius:65% 30% 55% 35%;transform:rotate(25deg);clip-path:polygon(25% 0,90% 12%,100% 42%,72% 60%,85% 100%,45% 82%,35% 55%,0 40%)}
-.continent.b{width:18%;height:39%;left:40%;top:48%;border-radius:50%;transform:rotate(-18deg);clip-path:polygon(20% 0,90% 18%,80% 45%,60% 100%,25% 76%,0 30%)}
-.continent.c{width:29%;height:26%;right:10%;top:28%;border-radius:55%;transform:rotate(12deg);clip-path:polygon(0 25%,35% 0,100% 20%,80% 75%,45% 100%,20% 60%)}
-.orbit{position:absolute;width:118%;height:43%;border:1px solid rgba(117,220,255,.55);border-radius:50%;transform:rotate(-22deg)}
+
+.welcome-art{position:relative;z-index:1;display:grid;place-items:center;min-height:430px;padding-bottom:28px;perspective:900px;isolation:isolate}
+.welcome-art:before{content:"";position:absolute;inset:5% -13% 2% 2%;z-index:-1;border-radius:48%;background:linear-gradient(145deg,rgba(22,113,161,.12),rgba(4,20,44,.22));filter:blur(5px)}
+.orbit{position:absolute;width:118%;height:43%;border:1px solid rgba(117,220,255,.55);border-radius:50%;transform:rotate(-22deg);pointer-events:none}
 .orbit.two{width:126%;height:53%;transform:rotate(48deg);border-color:rgba(255,255,255,.18)}
-.art-label{position:absolute;background:rgba(5,27,57,.8);border:1px solid rgba(148,220,255,.28);padding:9px 13px;border-radius:12px;color:#d9f5ff;font-size:.8rem;backdrop-filter:blur(8px)}
-.art-label.one{top:14%;right:-5%}.art-label.two{bottom:17%;left:-7%;cursor:pointer;transition:background .2s,border-color .2s,transform .2s;user-select:none}.art-label.two:hover,.art-label.two:focus-visible{background:rgba(10,57,100,.94);border-color:rgba(150,225,255,.72);transform:translateY(-2px);outline:none}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+.art-label{position:absolute;background:rgba(5,27,57,.85);border:1px solid rgba(148,220,255,.28);padding:9px 13px;border-radius:12px;color:#d9f5ff;font-size:.8rem;backdrop-filter:blur(8px);z-index:5}
+.art-label.one{top:12%;right:-5%}
+.art-label.two{bottom:20%;left:-7%;cursor:pointer;transition:background .2s,border-color .2s,transform .2s;user-select:none}
+.art-label.two:hover,.art-label.two:focus-visible{background:rgba(10,57,100,.94);border-color:rgba(150,225,255,.72);transform:translateY(-2px);outline:none}
+
+.earth{
+ width:min(37vw,410px);aspect-ratio:1;border-radius:50%;position:relative;overflow:hidden;
+ background:#061a32;
+ animation:earthFloat 7s ease-in-out infinite;
+ cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;
+ box-shadow:0 0 0 1px rgba(190,235,255,.42),0 0 0 8px rgba(93,199,255,.045),0 0 76px rgba(55,188,245,.42);
+}
+.earth:active{cursor:grabbing}
+#earthCanvas{display:block;width:100%;height:100%;border-radius:50%}
+.earth:before{
+ content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:2;
+ background:
+  radial-gradient(ellipse at 29% 24%,rgba(255,255,255,.13),transparent 27%),
+  radial-gradient(ellipse at 73% 76%,rgba(0,7,24,.52),transparent 57%),
+  linear-gradient(90deg,rgba(2,15,35,.08),transparent 48%,rgba(0,8,25,.25));
+ box-shadow:inset -18px -10px 34px rgba(0,5,20,.28),inset 2px 2px 16px rgba(184,237,255,.13);
+}
+.earth:after{
+ content:"";position:absolute;inset:-2px;border-radius:50%;pointer-events:none;z-index:3;
+ background:radial-gradient(ellipse at 50% 50%,transparent 62%,rgba(93,204,255,.18) 76%,rgba(70,173,255,.04) 84%,transparent 90%);
+}
+.earth-hint{
+ position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+ color:#c8eaff;font-size:.76rem;letter-spacing:.03em;white-space:nowrap;
+ opacity:.85;text-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none;z-index:5;
+}
+@keyframes earthFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
+
 .section-wrap{max-width:1200px;margin:auto;padding:clamp(34px,6vw,70px) 22px}
 .section-heading{text-align:center;max-width:720px;margin:0 auto 34px}
 .section-heading .eyebrow{color:var(--blue)}
 .section-heading h2{font-size:clamp(2rem,4vw,3.1rem);letter-spacing:-.045em;margin:10px 0}
 .section-heading p{color:var(--muted);line-height:1.7}
-.menu-screen{background:linear-gradient(180deg,#f3f9ff,#f8fbfe)}
+.menu-screen{
+ background:
+  linear-gradient(180deg,rgba(238,247,255,.92),rgba(244,250,255,.97) 42%,rgba(244,250,255,.95)),
+  url('https://images.unsplash.com/photo-1584267999791-0970eb9426e5?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+}
 .topic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .topic-bubble{--topic:var(--c1);border:1px solid var(--line);background:white;border-radius:23px;padding:22px 18px;text-align:left;min-height:188px;box-shadow:0 8px 22px rgba(15,55,95,.045);transition:.22s;position:relative;overflow:hidden;color:var(--ink)}
 .topic-bubble:before{content:"";position:absolute;inset:auto -20px -55px auto;width:135px;height:135px;border-radius:50%;background:var(--topic);opacity:.09;transition:.22s}
@@ -69,8 +106,18 @@ h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
 .topic-icon{width:45px;height:45px;border-radius:15px;background:color-mix(in srgb,var(--topic) 12%,white);display:grid;place-items:center;font-size:1.45rem;margin:12px 0}
 .topic-bubble strong{display:block;font-family:Manrope;font-size:1rem;line-height:1.25;max-width:190px}
 .topic-bubble small{display:block;color:var(--muted);margin-top:8px;line-height:1.45}
-.facts-area{margin-top:50px;background:linear-gradient(120deg,#0a2a52,#123f75);border-radius:28px;padding:clamp(24px,4vw,42px);color:white;position:relative;overflow:hidden}
-.facts-area:after{content:"✦";position:absolute;font-size:180px;right:25px;top:-35px;color:rgba(255,255,255,.05)}
+
+.marine-life{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;margin:34px 0 0}
+.marine-card{min-height:175px;position:relative;overflow:hidden;border-radius:20px;background:linear-gradient(145deg,#072342,#11477a);color:white;isolation:isolate;box-shadow:0 12px 30px rgba(7,29,59,.13)}
+.marine-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .7s}
+.marine-card:hover img{transform:scale(1.06)}
+.marine-card:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(3,19,42,.88),rgba(3,19,42,.08) 85%)}
+.marine-card div{position:absolute;left:17px;right:15px;bottom:15px}
+.marine-card strong{display:block;font-family:Manrope;font-size:1.08rem}
+.marine-card small{display:block;color:#d7eafa;margin-top:4px;line-height:1.4}
+
+.facts-area{margin-top:44px;background:linear-gradient(120deg,#0a2a52,#123f75);border-radius:28px;padding:clamp(24px,4vw,42px);color:white;position:relative;overflow:hidden}
+.facts-area:after{content:"✦";position:absolute;font-size:180px;right:25px;top:-35px;color:rgba(255,255,255,.05);pointer-events:none}
 .facts-head{display:flex;justify-content:space-between;align-items:end;gap:15px;position:relative;z-index:1}
 .facts-head h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:7px 0}
 .facts-head p{color:#c6def3;margin:0;max-width:440px}
@@ -80,15 +127,27 @@ h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
 .fact-controls{display:flex;gap:9px;margin-top:16px;position:relative;z-index:1}
 .light-btn{border:1px solid rgba(255,255,255,.35);background:transparent;color:white;padding:9px 15px;border-radius:999px;font-weight:700}
 .light-btn:hover{background:rgba(255,255,255,.12)}
-.topic-screen{background:var(--paper)}
-.topic-hero{--topic:var(--c1);background:linear-gradient(120deg,color-mix(in srgb,var(--topic) 92%,#071d3b),var(--topic));color:white;padding:clamp(35px,6vw,68px) max(22px,calc((100vw - 1120px)/2));position:relative;overflow:hidden}
-.topic-hero:after{content:"";position:absolute;width:350px;height:350px;border:1px solid rgba(255,255,255,.2);border-radius:50%;right:8%;top:-150px;box-shadow:0 0 0 35px rgba(255,255,255,.04),0 0 0 75px rgba(255,255,255,.035)}
+
+.topic-screen{background:linear-gradient(rgba(235,246,255,.94),rgba(242,248,253,.98))}
+.topic-hero{--topic:var(--c1);background:linear-gradient(120deg,color-mix(in srgb,var(--topic) 92%,#071d3b),var(--topic));color:white;padding:clamp(35px,6vw,68px) max(22px,calc((100vw - 1120px)/2));position:relative;overflow:hidden;transition:background-color .35s ease}
+.topic-hero:after{content:"";position:absolute;width:350px;height:350px;border:1px solid rgba(255,255,255,.2);border-radius:50%;right:8%;top:-150px;box-shadow:0 0 0 35px rgba(255,255,255,.04),0 0 0 75px rgba(255,255,255,.035);pointer-events:none}
 .back-btn{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:white;border-radius:999px;padding:9px 15px;font-weight:700;margin-bottom:27px;position:relative;z-index:1}
 .back-btn:hover{background:rgba(255,255,255,.2)}
 .topic-hero-inner{position:relative;z-index:1;max-width:850px}
 .topic-hero .eyebrow{color:rgba(255,255,255,.78)}
 .topic-hero h1{font-size:clamp(2.2rem,5vw,4.5rem);letter-spacing:-.055em;line-height:1.03;margin:12px 0}
 .topic-hero p{font-size:1.08rem;line-height:1.7;color:rgba(255,255,255,.9);max-width:760px;margin-bottom:0}
+
+.ocean-life-strip{
+ min-height:118px;display:flex;align-items:center;padding:22px max(22px,calc((100vw - 1120px)/2));
+ color:white;background:
+ linear-gradient(90deg,rgba(4,25,51,.92),rgba(11,56,96,.75)),
+ url('https://commons.wikimedia.org/wiki/Special:FilePath/Underwater_photo_of_coral_reef.jpg?width=1400') center 45%/cover no-repeat;
+ border-bottom:1px solid rgba(255,255,255,.16);
+}
+.ocean-life-strip strong{font-family:Manrope;font-size:1.15rem}
+.ocean-life-strip span{display:block;color:#d4eafa;font-size:.9rem;margin-top:5px}
+
 .topic-content{max-width:1120px;margin:auto;padding:40px 22px 70px}
 .content-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:start}
 .info-card{background:white;border:1px solid var(--line);border-radius:22px;padding:clamp(22px,3vw,32px);box-shadow:0 8px 25px rgba(15,55,95,.045)}
@@ -98,7 +157,8 @@ h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
 .info-card ul{padding-left:21px;margin-bottom:0}
 .info-card li+li{margin-top:7px}
 .highlight{border-left:4px solid var(--topic,var(--blue));background:color-mix(in srgb,var(--topic,var(--blue)) 8%,white);padding:15px 17px;border-radius:0 13px 13px 0;margin-top:20px;color:#28445f;line-height:1.65}
-.visual-card{background:linear-gradient(145deg,#eaf6ff,#f7fbff);border:1px solid #d9eaf7;border-radius:22px;padding:24px;min-height:245px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.visual-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#eaf6ff,#f7fbff);border:1px solid #d9eaf7;border-radius:22px;padding:24px;min-height:245px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.visual-card:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-65px;bottom:-85px;background:var(--topic,var(--sky));opacity:.08}
 .visual-icon{font-size:4.4rem;margin-bottom:12px;filter:drop-shadow(0 8px 10px rgba(16,67,110,.12))}
 .visual-card h3{margin:0 0 8px}
 .visual-card p{color:var(--muted);line-height:1.65;margin:0;max-width:360px}
@@ -125,103 +185,54 @@ h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
 .bottom-nav button:hover{border-color:var(--topic);color:var(--topic)}
 .footer{background:#071d3b;color:#c5d7e9;text-align:center;padding:25px 20px;font-size:.85rem}
 .footer strong{color:white}
-@media(max-width:900px){.topic-grid{grid-template-columns:repeat(2,1fr)}.welcome{grid-template-columns:1fr;text-align:center}.welcome-copy{margin:auto}.welcome-art{min-height:330px}.earth{width:min(58vw,330px)}.content-grid{grid-template-columns:1fr}.topic-hero:after{right:-130px}}
-@media(max-width:560px){.topbar{height:62px;padding:0 15px}.brand{font-size:.9rem}.brand-mark{width:32px;height:32px}.nav-btn{padding:8px 11px;font-size:.78rem}.welcome{min-height:calc(100vh - 62px);padding:46px 22px 30px}.welcome h1{font-size:clamp(2.7rem,13vw,4rem)}.welcome-art{min-height:270px}.earth{width:245px}.art-label.one{right:-12px}.art-label.two{left:-8px}.topic-grid{gap:10px}.topic-bubble{padding:16px 14px;min-height:170px;border-radius:18px}.topic-bubble strong{font-size:.91rem}.topic-bubble small{font-size:.78rem}.topic-icon{width:39px;height:39px;margin:9px 0}.facts-head{display:block}.facts-head p{margin-top:8px}.fact-card{align-items:flex-start;padding:18px}.fact-card p{font-size:.94rem}.topic-hero{padding:28px 20px 38px}.topic-hero h1{font-size:2.5rem}.topic-content{padding:24px 15px 45px}.info-card{padding:21px;border-radius:18px}.steps{grid-template-columns:1fr}.mini-grid{grid-template-columns:1fr 1fr}.compare{grid-template-columns:1fr}.bottom-nav button{font-size:.82rem;padding:11px 13px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
-
-/* --- Evolución oceánica: fotografía real, profundidad y vida marina --- */
-.welcome{
- background:
-  linear-gradient(90deg,rgba(4,20,43,.97) 0%,rgba(5,29,59,.88) 48%,rgba(5,29,59,.46) 100%),
-  url('https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1400') center 48%/cover no-repeat,
-  radial-gradient(ellipse at 76% 45%,#174b86 0%,#0b2d59 37%,#071d3b 76%);
-}
-.welcome-art{isolation:isolate}
-.welcome-art:before{
- content:"";position:absolute;inset:5% -13% 2% 2%;z-index:-1;border-radius:48%;
- background:linear-gradient(145deg,rgba(22,113,161,.12),rgba(4,20,44,.22));
- filter:blur(5px)
-}
-/* Tierra realista: textura satelital NASA sobre una esfera con volumen */
-.earth{
- width:min(37vw,410px);aspect-ratio:1;border-radius:50%;position:relative;overflow:hidden;
- border:1px solid rgba(177,235,255,.42);
- background-color:#061b35;
- background-image:url('https://eoimages.gsfc.nasa.gov/images/imagerecords/74000/74218/world.topo.bathy.200412.3x5400x2700.jpg');
- background-repeat:repeat-x;
- background-size:200% 100%;
- background-position:24% center;
- box-shadow:inset -32px -22px 48px rgba(0,8,24,.55),inset 12px 8px 24px rgba(132,222,255,.16),0 0 0 5px rgba(93,199,255,.025),0 0 48px rgba(55,188,245,.24);
- animation:earthSpin 58s linear infinite,earthFloat 7s ease-in-out infinite;
- will-change:background-position;
-}
-.earth:before{
- content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:2;
- background:radial-gradient(ellipse at 31% 27%,rgba(255,255,255,.17),transparent 25%),
- radial-gradient(ellipse at 72% 73%,rgba(0,8,28,.64),transparent 58%),
- linear-gradient(90deg,rgba(2,15,35,.16),transparent 24%,transparent 58%,rgba(0,8,25,.36));
- box-shadow:inset -24px -12px 42px rgba(0,5,20,.38),inset 3px 2px 18px rgba(184,237,255,.17);
-}
-.earth:after{
- content:"";position:absolute;inset:-2px;border-radius:50%;pointer-events:none;z-index:3;
- background:radial-gradient(ellipse at 50% 50%,transparent 62%,rgba(93,204,255,.18) 76%,rgba(70,173,255,.04) 84%,transparent 90%);
-}
-@keyframes earthSpin{from{background-position:24% center}to{background-position:224% center}}
-@keyframes earthFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
-.welcome-art{perspective:900px}
-.orbit{pointer-events:none}
-.art-label{z-index:5}
+.photo-credit{font-size:.76rem;color:#a9c6df;margin-top:12px}
+.photo-credit a{color:#d8efff}
 .photo-credit a:hover{text-decoration:none}
-@media(max-width:900px){.earth{width:min(58vw,330px)}}
-@media(max-width:560px){.earth{width:245px}}
-@media(prefers-reduced-motion:reduce){.earth{animation:none;background-position:24% center}}
 
-.menu-screen{
- background:
-  linear-gradient(180deg,rgba(238,247,255,.91),rgba(244,250,255,.97) 42%,rgba(244,250,255,.94)),
-  url('https://images.unsplash.com/photo-1584267999791-0970eb9426e5?auto=format&fit=crop&w=1800&q=85') center/cover fixed;
-}
-.marine-life{
- display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;margin:0 0 34px;
-}
-.marine-card{
- min-height:175px;position:relative;overflow:hidden;border-radius:20px;
- background:#08294c;color:white;isolation:isolate;box-shadow:0 12px 30px rgba(7,29,59,.13);
-}
-.marine-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .7s}
-.marine-card:hover img{transform:scale(1.06)}
-.marine-card:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(3,19,42,.88),rgba(3,19,42,.04) 85%)}
-.marine-card div{position:absolute;left:17px;right:15px;bottom:15px}
-.marine-card strong{display:block;font-family:Manrope;font-size:1.08rem}
-.marine-card small{display:block;color:#d7eafa;margin-top:4px;line-height:1.4}
-.ocean-life-strip{
- min-height:118px;display:flex;align-items:center;padding:22px max(22px,calc((100vw - 1120px)/2));
- color:white;background:
- linear-gradient(90deg,rgba(4,25,51,.9),rgba(5,40,72,.48)),
- url('https://commons.wikimedia.org/wiki/Special:FilePath/Underwater_photo_of_coral_reef.jpg?width=1600') center 45%/cover no-repeat;
- border-bottom:1px solid rgba(255,255,255,.16);
-}
-.ocean-life-strip strong{font-family:Manrope;font-size:1.15rem}
-.ocean-life-strip span{display:block;color:#d4eafa;font-size:.9rem;margin-top:5px}
-.topic-screen{background:
- linear-gradient(rgba(235,246,255,.92),rgba(242,248,253,.96)),
- url('https://images.unsplash.com/photo-1584267999791-0970eb9426e5?auto=format&fit=crop&w=1800&q=85') center/cover fixed;
-}
- .topic-hero{
- background:linear-gradient(105deg,color-mix(in srgb,var(--topic) 88%,#071d3b),rgba(7,29,59,.48));
- background-position:center;background-size:cover;background-repeat:no-repeat;
-}
-.visual-card{position:relative;overflow:hidden}
-.visual-card:after{
- content:"";position:absolute;width:150px;height:150px;border-radius:50%;
- right:-65px;bottom:-85px;background:var(--topic,var(--sky));opacity:.08
+@media(max-width:900px){
+ .topic-grid{grid-template-columns:repeat(2,1fr)}
+ .welcome{grid-template-columns:1fr;text-align:center;background-position:58% center}
+ .welcome-copy{margin:auto}
+ .welcome-art{min-height:350px}
+ .earth{width:min(58vw,320px)}
+ .content-grid{grid-template-columns:1fr}
+ .topic-hero:after{right:-130px}
 }
 @media(max-width:760px){
  .marine-life{grid-template-columns:1fr 1fr}
  .marine-card:first-child{grid-column:1/-1;min-height:190px}
  .marine-card{min-height:145px}
- .welcome{background-position:58% center}
- .menu-screen,.topic-screen{background-attachment:scroll}
+}
+@media(max-width:560px){
+ .topbar{height:62px;padding:0 15px}
+ .brand{font-size:.9rem}
+ .brand-mark{width:32px;height:32px}
+ .nav-btn{padding:8px 11px;font-size:.78rem}
+ .welcome{min-height:calc(100vh - 62px);padding:42px 20px 34px}
+ .welcome h1{font-size:clamp(2.6rem,12.5vw,3.9rem)}
+ .welcome-art{min-height:300px;padding-bottom:32px}
+ .earth{width:230px}
+ .art-label{font-size:.72rem;padding:7px 10px}
+ .art-label.one{top:6%;right:0}
+ .art-label.two{bottom:24%;left:0}
+ .earth-hint{font-size:.69rem}
+ .topic-grid{gap:10px}
+ .topic-bubble{padding:16px 14px;min-height:170px;border-radius:18px}
+ .topic-bubble strong{font-size:.91rem}
+ .topic-bubble small{font-size:.78rem}
+ .topic-icon{width:39px;height:39px;margin:9px 0}
+ .facts-head{display:block}
+ .facts-head p{margin-top:8px}
+ .fact-card{align-items:flex-start;padding:18px}
+ .fact-card p{font-size:.94rem}
+ .topic-hero{padding:28px 20px 38px}
+ .topic-hero h1{font-size:2.5rem}
+ .topic-content{padding:24px 15px 45px}
+ .info-card{padding:21px;border-radius:18px}
+ .steps{grid-template-columns:1fr}
+ .mini-grid{grid-template-columns:1fr}
+ .compare{grid-template-columns:1fr}
+ .bottom-nav button{font-size:.82rem;padding:11px 13px}
 }
 @media(max-width:430px){
  .marine-life{gap:9px}
@@ -230,51 +241,17 @@ h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
  .marine-card strong{font-size:.95rem}
  .marine-card small{font-size:.76rem}
 }
-
-.topic-hero{transition:background-color .35s ease}
-
-/* Tierra 3D interactiva: giro manual, textura satelital real y volumen */
-.earth{
-  overflow:hidden;
-  background:#061a32!important;
-  animation:earthFloat 7s ease-in-out infinite!important;
-  cursor:grab;
-  touch-action:none;
-  user-select:none;
-  -webkit-user-select:none;
-  box-shadow:0 0 0 1px rgba(190,235,255,.42),0 0 0 8px rgba(93,199,255,.045),0 0 76px rgba(55,188,245,.42);
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
-.earth:active{cursor:grabbing}
-#earthCanvas{display:block;width:100%;height:100%;border-radius:50%}
-.earth:before{
-  z-index:2;
-  pointer-events:none;
-  background:
-   radial-gradient(ellipse at 29% 24%,rgba(255,255,255,.13),transparent 27%),
-   radial-gradient(ellipse at 73% 76%,rgba(0,7,24,.52),transparent 57%),
-   linear-gradient(90deg,rgba(2,15,35,.08),transparent 48%,rgba(0,8,25,.25));
-}
-.earth:after{
-  z-index:3;
-  pointer-events:none;
-  box-shadow:inset -18px -10px 34px rgba(0,5,20,.28),inset 2px 2px 16px rgba(184,237,255,.13);
-}
-.earth-hint{
- position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);
- color:#c8eaff;font-size:.76rem;letter-spacing:.03em;white-space:nowrap;
- opacity:.82;text-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none;
-}
-@media(max-width:560px){.earth-hint{bottom:-29px;font-size:.69rem}}
-@media(prefers-reduced-motion:reduce){.earth{animation:none!important}}
-
 </style>
 </head>
 <body>
 <header class="topbar">
  <a class="brand" href="#" onclick="goHome();return false"><span class="brand-mark">🌊</span><span>EL NIÑO <span style="font-weight:500;opacity:.7">/ EXPLORA</span></span></a>
  <div class="top-actions">
-  <button class="nav-btn" onclick="goHome()">Inicio</button>
-  <button class="nav-btn" onclick="showMenu()">Explorar</button>
+  <button class="nav-btn" type="button" onclick="goHome()">Inicio</button>
+  <button class="nav-btn" type="button" onclick="showMenu()">Explorar</button>
  </div>
 </header>
 
@@ -284,15 +261,16 @@ h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
   <div class="eyebrow">Ciencia · Océano · Perú</div>
   <h1>EL NIÑO:<br><span>un fenómeno,</span><br>muchas consecuencias.</h1>
   <p>El océano y la atmósfera están conectados. Cuando sus condiciones cambian, también puede cambiar el clima y la vida de millones de personas. Descubre cómo sucede y por qué importa en el Perú.</p>
-  <button class="primary-btn" onclick="showMenu()">ENTRAR A EXPLORAR&nbsp; →</button>
+  <button class="primary-btn" type="button" onclick="showMenu()">ENTRAR A EXPLORAR&nbsp; →</button>
  </div>
- <div class="welcome-art" aria-label="Ilustración decorativa de la Tierra">
+ <div class="welcome-art" aria-label="Globo terráqueo interactivo">
   <div class="orbit"></div><div class="orbit two"></div>
   <div class="earth" id="earthGlobe" role="img" aria-label="Tierra tridimensional interactiva. Arrastra para girar el planeta manualmente.">
-    <canvas id="earthCanvas" aria-hidden="true"></canvas>
-   </div>
-  <div class="art-label one">☀️ Atmósfera</div><button class="art-label two" id="pacificFocus" type="button" aria-label="Orientar la Tierra hacia el océano Pacífico">🌊 Océano Pacífico</button>
-   <div class="earth-hint">↔ Toca y arrastra para girar</div>
+   <canvas id="earthCanvas" aria-hidden="true"></canvas>
+  </div>
+  <div class="art-label one">☀️ Atmósfera</div>
+  <button class="art-label two" id="pacificFocus" type="button" aria-label="Orientar la Tierra hacia el océano Pacífico">🌊 Océano Pacífico</button>
+  <div class="earth-hint">↔ Toca y arrastra para girar</div>
  </div>
 </section>
 
@@ -306,41 +284,41 @@ h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
   <div class="topic-grid" id="topicGrid"></div>
   <div class="marine-life" aria-label="Fotografías de vida marina">
    <article class="marine-card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1400" alt="Dos ballenas jorobadas nadando bajo el agua" loading="lazy">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1400" alt="Dos ballenas jorobadas nadando bajo el agua" loading="lazy" onerror="this.style.display='none'">
     <div><strong>Gigantes del Pacífico</strong><small>Ballenas jorobadas en su entorno marino</small></div>
    </article>
    <article class="marine-card">
-    <img src="https://images.unsplash.com/photo-1584267999791-0970eb9426e5?auto=format&fit=crop&w=1800&q=85" alt="Banco de peces nadando sobre un arrecife" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1584267999791-0970eb9426e5?auto=format&fit=crop&w=1200&q=80" alt="Banco de peces nadando sobre un arrecife" loading="lazy" onerror="this.style.display='none'">
     <div><strong>Un océano lleno de vida</strong><small>Bancos de peces y ecosistemas marinos</small></div>
    </article>
    <article class="marine-card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Green-sea-turtle.jpg?width=900" alt="Tortuga marina verde nadando bajo el agua" loading="lazy">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Green-sea-turtle.jpg?width=900" alt="Tortuga marina verde nadando bajo el agua" loading="lazy" onerror="this.style.display='none'">
     <div><strong>Habitantes del mar</strong><small>Tortugas marinas y biodiversidad</small></div>
    </article>
    <article class="marine-card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dolphin_Ocean.jpg?width=1200" alt="Delfines nadando en el océano" loading="lazy">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dolphin_Ocean.jpg?width=1200" alt="Delfines nadando en el océano" loading="lazy" onerror="this.style.display='none'">
     <div><strong>Viajeros del océano</strong><small>Delfines desplazándose en grupo</small></div>
    </article>
    <article class="marine-card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Manta_Ray_-_Under.jpg?width=1200" alt="Mantarraya nadando bajo el agua" loading="lazy">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Manta_Ray_-_Under.jpg?width=1200" alt="Mantarraya nadando bajo el agua" loading="lazy" onerror="this.style.display='none'">
     <div><strong>Alas bajo el agua</strong><small>Mantarrayas recorriendo el mar</small></div>
    </article>
    <article class="marine-card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/OCNMS_Sea_Lion_%2849743722337%29.jpg?width=1200" alt="Lobo marino nadando bajo el agua" loading="lazy">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/OCNMS_Sea_Lion_%2849743722337%29.jpg?width=1200" alt="Lobo marino nadando bajo el agua" loading="lazy" onerror="this.style.display='none'">
     <div><strong>Vecinos del Pacífico</strong><small>Lobos marinos en su ambiente natural</small></div>
    </article>
   </div>
   <section class="facts-area">
    <div class="facts-head"><div><div class="eyebrow" style="color:#83dcff">Pequeños grandes datos</div><h2>¿Sabías que...?</h2></div><p>Curiosidades para mirar el fenómeno desde otros ángulos.</p></div>
    <div class="fact-card"><div class="fact-spark">✦</div><p id="factText" aria-live="polite"></p></div>
-   <div class="fact-controls"><button class="light-btn" onclick="changeFact(-1)">← Anterior</button><button class="light-btn" onclick="changeFact(1)">Otra curiosidad →</button></div>
+   <div class="fact-controls"><button class="light-btn" type="button" onclick="changeFact(-1)">← Anterior</button><button class="light-btn" type="button" onclick="changeFact(1)">Otra curiosidad →</button></div>
   </section>
  </div>
 </section>
 
 <section id="topicScreen" class="screen topic-screen hidden">
  <div class="topic-hero" id="topicHero">
-  <button class="back-btn" onclick="showMenu()">← Volver al menú</button>
+  <button class="back-btn" type="button" onclick="showMenu()">← Volver al menú</button>
   <div class="topic-hero-inner"><div class="eyebrow" id="topicEyebrow"></div><h1 id="topicTitle"></h1><p id="topicLead"></p></div>
  </div>
  <div class="ocean-life-strip">
@@ -349,9 +327,10 @@ h1,h2,h3{font-family:Manrope,'DM Sans',sans-serif}
  <div class="topic-content" id="topicContent"></div>
 </section>
 </main>
+
 <footer class="footer"><strong>EL NIÑO: Un fenómeno, muchas consecuencias</strong><br>Proyecto educativo · Aprende, comprende y prepárate.
  <div class="photo-credit">Fotografías: <a href="https://commons.wikimedia.org/wiki/File:Humpback_Whale_underwater_shot.jpg" target="_blank" rel="noopener noreferrer">ballenas (NOAA / Wikimedia Commons)</a> · <a href="https://unsplash.com/photos/school-of-fish-in-water-_FW7__h3MMA" target="_blank" rel="noopener noreferrer">banco de peces (Unsplash)</a> · <a href="https://commons.wikimedia.org/wiki/File:Green-sea-turtle.jpg" target="_blank" rel="noopener noreferrer">tortuga marina (U.S. Fish and Wildlife Service)</a> · <a href="https://commons.wikimedia.org/wiki/File:Dolphin_Ocean.jpg" target="_blank" rel="noopener noreferrer">delfines</a> · <a href="https://commons.wikimedia.org/wiki/File:Manta_Ray_-_Under.jpg" target="_blank" rel="noopener noreferrer">mantarraya</a> · <a href="https://commons.wikimedia.org/wiki/File:OCNMS_Sea_Lion_(49743722337).jpg" target="_blank" rel="noopener noreferrer">lobo marino (NOAA)</a> · <a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-topography-bathymetry/" target="_blank" rel="noopener noreferrer">textura de la Tierra (NASA Blue Marble)</a>.</div>
- </footer>
+</footer>
 
 <script>
 const topics = [
@@ -377,170 +356,6 @@ const topics = [
   <article class="info-card"><h2>¿Qué son los vientos alisios?</h2><p>Son vientos que soplan de manera relativamente persistente en las regiones tropicales. En el Pacífico ecuatorial ayudan a mantener la distribución habitual de las aguas cálidas y frías.</p><h3>¿Qué cambia durante El Niño?</h3><p>Cuando los alisios se debilitan, el agua cálida puede avanzar hacia el este. La atmósfera responde a ese calentamiento y se reorganizan zonas de lluvia y circulación del aire.</p></article>
   <aside class="visual-card"><div class="visual-icon">💨 🌊 ☀️</div><h3>Océano + atmósfera</h3><p>El Niño no es causado por un solo elemento: surge de la interacción entre el océano Pacífico y la atmósfera.</p></aside>
  </div>`},
-.photo-credit{font-size:.76rem;color:#a9c6df;margin-top:12px}
-.photo-credit a{color:#d8efff}
-  @media(max-width:760px){
- .marine-life{grid-template-columns:1fr 1fr}
- .marine-card:first-child{grid-column:1/-1;min-height:190px}
- .marine-card{min-height:145px}
- .welcome{background-position:58% center}
- .menu-screen,.topic-screen{background-attachment:scroll}
-}
-@media(max-width:430px){
- .marine-life{gap:9px}
- .marine-card{border-radius:16px}
- .marine-card div{left:12px;bottom:12px}
- .marine-card strong{font-size:.95rem}
- .marine-card small{font-size:.76rem}
-}
-
-.topic-hero{transition:background-color .35s ease}
-
-/* Tierra 3D interactiva: giro manual, textura satelital real y volumen */
-.earth{
-  overflow:hidden;
-  background:#061a32!important;
-  animation:earthFloat 7s ease-in-out infinite!important;
-  cursor:grab;
-  touch-action:none;
-  user-select:none;
-  -webkit-user-select:none;
-  box-shadow:0 0 0 1px rgba(190,235,255,.42),0 0 0 8px rgba(93,199,255,.045),0 0 76px rgba(55,188,245,.42);
-}
-.earth:active{cursor:grabbing}
-#earthCanvas{display:block;width:100%;height:100%;border-radius:50%}
-.earth:before{
-  z-index:2;
-  pointer-events:none;
-  background:
-   radial-gradient(ellipse at 29% 24%,rgba(255,255,255,.13),transparent 27%),
-   radial-gradient(ellipse at 73% 76%,rgba(0,7,24,.52),transparent 57%),
-   linear-gradient(90deg,rgba(2,15,35,.08),transparent 48%,rgba(0,8,25,.25));
-}
-.earth:after{
-  z-index:3;
-  pointer-events:none;
-  box-shadow:inset -18px -10px 34px rgba(0,5,20,.28),inset 2px 2px 16px rgba(184,237,255,.13);
-}
-.earth-hint{
- position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);
- color:#c8eaff;font-size:.76rem;letter-spacing:.03em;white-space:nowrap;
- opacity:.82;text-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none;
-}
-@media(max-width:560px){.earth-hint{bottom:-29px;font-size:.69rem}}
-@media(prefers-reduced-motion:reduce){.earth{animation:none!important}}
-
-</style>
-</head>
-<body>
-<header class="topbar">
- <a class="brand" href="#" onclick="goHome();return false"><span class="brand-mark">🌊</span><span>EL NIÑO <span style="font-weight:500;opacity:.7">/ EXPLORA</span></span></a>
- <div class="top-actions">
-  <button class="nav-btn" onclick="goHome()">Inicio</button>
-  <button class="nav-btn" onclick="showMenu()">Explorar</button>
- </div>
-</header>
-
-<main>
-<section id="welcome" class="screen welcome">
- <div class="welcome-copy">
-  <div class="eyebrow">Ciencia · Océano · Perú</div>
-  <h1>EL NIÑO:<br><span>un fenómeno,</span><br>muchas consecuencias.</h1>
-  <p>El océano y la atmósfera están conectados. Cuando sus condiciones cambian, también puede cambiar el clima y la vida de millones de personas. Descubre cómo sucede y por qué importa en el Perú.</p>
-  <button class="primary-btn" onclick="showMenu()">ENTRAR A EXPLORAR&nbsp; →</button>
- </div>
- <div class="welcome-art" aria-label="Ilustración decorativa de la Tierra">
-  <div class="orbit"></div><div class="orbit two"></div>
-  <div class="earth" id="earthGlobe" role="img" aria-label="Tierra tridimensional interactiva. Arrastra para girar el planeta manualmente.">
-    <canvas id="earthCanvas" aria-hidden="true"></canvas>
-   </div>
-  <div class="art-label one">☀️ Atmósfera</div><button class="art-label two" id="pacificFocus" type="button" aria-label="Orientar la Tierra hacia el océano Pacífico">🌊 Océano Pacífico</button>
-   <div class="earth-hint">↔ Toca y arrastra para girar</div>
- </div>
-</section>
-
-<section id="menu" class="screen menu-screen hidden">
- <div class="section-wrap">
-  <div class="section-heading">
-   <div class="eyebrow">Centro de exploración</div>
-   <h2>Un fenómeno, siete perspectivas</h2>
-   <p>Elige una burbuja para abrir su sección. Cada tema tiene su propio color y contenido para que puedas recorrerlo a tu ritmo.</p>
-  </div>
-  <div class="topic-grid" id="topicGrid"></div>
-  <div class="marine-life" aria-label="Fotografías de vida marina">
-   <article class="marine-card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1400" alt="Dos ballenas jorobadas nadando bajo el agua" loading="lazy">
-    <div><strong>Gigantes del Pacífico</strong><small>Ballenas jorobadas en su entorno marino</small></div>
-   </article>
-   <article class="marine-card">
-    <img src="https://images.unsplash.com/photo-1584267999791-0970eb9426e5?auto=format&fit=crop&w=1800&q=85" alt="Banco de peces nadando sobre un arrecife" loading="lazy">
-    <div><strong>Un océano lleno de vida</strong><small>Bancos de peces y ecosistemas marinos</small></div>
-   </article>
-   <article class="marine-card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Green-sea-turtle.jpg?width=900" alt="Tortuga marina verde nadando bajo el agua" loading="lazy">
-    <div><strong>Habitantes del mar</strong><small>Tortugas marinas y biodiversidad</small></div>
-   </article>
-   <article class="marine-card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dolphin_Ocean.jpg?width=1200" alt="Delfines nadando en el océano" loading="lazy">
-    <div><strong>Viajeros del océano</strong><small>Delfines desplazándose en grupo</small></div>
-   </article>
-   <article class="marine-card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Manta_Ray_-_Under.jpg?width=1200" alt="Mantarraya nadando bajo el agua" loading="lazy">
-    <div><strong>Alas bajo el agua</strong><small>Mantarrayas recorriendo el mar</small></div>
-   </article>
-   <article class="marine-card">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/OCNMS_Sea_Lion_%2849743722337%29.jpg?width=1200" alt="Lobo marino nadando bajo el agua" loading="lazy">
-    <div><strong>Vecinos del Pacífico</strong><small>Lobos marinos en su ambiente natural</small></div>
-   </article>
-  </div>
-  <section class="facts-area">
-   <div class="facts-head"><div><div class="eyebrow" style="color:#83dcff">Pequeños grandes datos</div><h2>¿Sabías que...?</h2></div><p>Curiosidades para mirar el fenómeno desde otros ángulos.</p></div>
-   <div class="fact-card"><div class="fact-spark">✦</div><p id="factText" aria-live="polite"></p></div>
-   <div class="fact-controls"><button class="light-btn" onclick="changeFact(-1)">← Anterior</button><button class="light-btn" onclick="changeFact(1)">Otra curiosidad →</button></div>
-  </section>
- </div>
-</section>
-
-<section id="topicScreen" class="screen topic-screen hidden">
- <div class="topic-hero" id="topicHero">
-  <button class="back-btn" onclick="showMenu()">← Volver al menú</button>
-  <div class="topic-hero-inner"><div class="eyebrow" id="topicEyebrow"></div><h1 id="topicTitle"></h1><p id="topicLead"></p></div>
- </div>
- <div class="ocean-life-strip">
-  <div><strong>El océano Pacífico está lleno de vida</strong><span>Sus cambios también influyen en los ecosistemas y en las personas.</span></div>
- </div>
- <div class="topic-content" id="topicContent"></div>
-</section>
-</main>
-<footer class="footer"><strong>EL NIÑO: Un fenómeno, muchas consecuencias</strong><br>Proyecto educativo · Aprende, comprende y prepárate.
- <div class="photo-credit">Fotografías: <a href="https://commons.wikimedia.org/wiki/File:Humpback_Whale_underwater_shot.jpg" target="_blank" rel="noopener noreferrer">ballenas (NOAA / Wikimedia Commons)</a> · <a href="https://unsplash.com/photos/school-of-fish-in-water-_FW7__h3MMA" target="_blank" rel="noopener noreferrer">banco de peces (Unsplash)</a> · <a href="https://commons.wikimedia.org/wiki/File:Green-sea-turtle.jpg" target="_blank" rel="noopener noreferrer">tortuga marina (U.S. Fish and Wildlife Service)</a> · <a href="https://commons.wikimedia.org/wiki/File:Dolphin_Ocean.jpg" target="_blank" rel="noopener noreferrer">delfines</a> · <a href="https://commons.wikimedia.org/wiki/File:Manta_Ray_-_Under.jpg" target="_blank" rel="noopener noreferrer">mantarraya</a> · <a href="https://commons.wikimedia.org/wiki/File:OCNMS_Sea_Lion_(49743722337).jpg" target="_blank" rel="noopener noreferrer">lobo marino (NOAA)</a> · <a href="https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-topography-bathymetry/" target="_blank" rel="noopener noreferrer">textura de la Tierra (NASA Blue Marble)</a>.</div>
- </footer>
-
-<script>
-const topics = [
- {id:1,color:'#1765b5',icon:'🌊',title:'¿Qué es el Fenómeno del Niño?',short:'Conoce el cambio que comienza en el océano Pacífico.',lead:'Es un fenómeno climático-oceánico relacionado con el calentamiento anómalo de las aguas superficiales del océano Pacífico ecuatorial central y oriental, que modifica la circulación de la atmósfera y puede alterar el clima en distintas regiones.',content:`
- <div class="content-grid">
-  <article class="info-card"><h2>Una conexión entre el mar y el clima</h2><p>El Niño forma parte del sistema climático conocido como <strong>El Niño-Oscilación del Sur (ENOS o ENSO)</strong>. Durante un episodio de El Niño, la temperatura del mar en una zona del Pacífico ecuatorial se mantiene más cálida de lo habitual y se producen cambios en los vientos, las nubes y las lluvias.</p><p>No significa simplemente que “todo el planeta se calienta”. Sus efectos dependen de la región, la época del año y la intensidad y duración del episodio.</p><div class="highlight"><strong>Idea clave:</strong> el océano y la atmósfera funcionan como un sistema conectado. Un cambio en uno puede influir en el otro.</div></article>
-  <aside class="visual-card"><div class="visual-icon">🌎</div><h3>El Pacífico ecuatorial</h3><p>Una enorme extensión de océano donde las variaciones de temperatura superficial pueden influir en patrones atmosféricos a gran escala.</p></aside>
- </div>
- <article class="info-card" style="margin-top:20px"><h2>El Niño, La Niña y condiciones neutrales</h2><div class="compare">
-  <div><h3>🔥 El Niño</h3><p>Las aguas superficiales del Pacífico ecuatorial central y oriental están más cálidas de lo habitual, según los criterios de seguimiento climático.</p></div>
-  <div><h3>❄️ La Niña</h3><p>En esa región del Pacífico, las aguas superficiales están más frías de lo habitual y se producen cambios relacionados en la atmósfera.</p></div>
-  <div><h3>🌤️ Neutral</h3><p>No se cumplen las condiciones oceánicas y atmosféricas características de El Niño ni de La Niña.</p></div>
-  <div><h3>📍 ¿Y en el Perú?</h3><p>También se vigila el calentamiento del Pacífico oriental y costero, porque puede tener efectos importantes en nuestro litoral.</p></div>
- </div></article>`},
- {id:2,color:'#35b8ea',icon:'🌀',title:'¿Cómo se produce?',short:'Descubre el papel de los vientos, el mar y la atmósfera.',lead:'El Niño se desarrolla cuando cambian las condiciones habituales del Pacífico tropical. Los vientos, la temperatura del mar y la circulación atmosférica interactúan y pueden reforzar esos cambios.',content:`
- <article class="info-card"><h2>Primero: ¿qué ocurre normalmente?</h2><p>En condiciones habituales, los <strong>vientos alisios</strong> soplan de este a oeste cerca del ecuador. Empujan las aguas superficiales cálidas hacia el Pacífico occidental, cerca de Oceanía. En el Pacífico oriental, frente a Sudamérica, suele aflorar agua más fría desde zonas profundas.</p>
- <div class="steps">
-  <div class="step"><b>01 · CONDICIONES HABITUALES</b><p>Los alisios desplazan el agua cálida hacia el oeste y favorecen el afloramiento de agua más fría en el este.</p></div>
-  <div class="step"><b>02 · CAMBIOS</b><p>Los vientos alisios pueden debilitarse y las aguas cálidas pueden desplazarse hacia el centro y el este del Pacífico.</p></div>
-  <div class="step"><b>03 · RESPUESTA ATMOSFÉRICA</b><p>Cambian la distribución del calor, la formación de nubes y los patrones de lluvia y viento.</p></div>
- </div><div class="highlight"><strong>Importante:</strong> no todos los episodios evolucionan exactamente igual. El Niño se identifica mediante el seguimiento de indicadores del océano y la atmósfera.</div></article>
- <div class="content-grid" style="margin-top:20px">
-  <article class="info-card"><h2>¿Qué son los vientos alisios?</h2><p>Son vientos que soplan de manera relativamente persistente en las regiones tropicales. En el Pacífico ecuatorial ayudan a mantener la distribución habitual de las aguas cálidas y frías.</p><h3>¿Qué cambia durante El Niño?</h3><p>Cuando los alisios se debilitan, el agua cálida puede avanzar hacia el este. La atmósfera responde a ese calentamiento y se reorganizan zonas de lluvia y circulación del aire.</p></article>
-  <aside class="visual-card"><div class="visual-icon">💨 🌊 ☀️</div><h3>Océano + atmósfera</h3><p>El Niño no es causado por un solo elemento: surge de la interacción entre el océano Pacífico y la atmósfera.</p></aside>
- </div>`},
-   </div>`},
  {id:3,color:'#16a085',icon:'💧',title:'Necesidades primarias afectadas',short:'Agua, alimentación, salud y vivienda.',lead:'Las necesidades primarias son esenciales para vivir. Un episodio intenso puede afectar su disponibilidad o acceso, especialmente cuando provoca lluvias extremas, inundaciones, deslizamientos o interrupciones de servicios.',content:`
  <div class="content-grid">
   <article class="info-card"><h2>¿Qué puede verse afectado?</h2><p>Los impactos no son iguales en todas las localidades. Dependen de la intensidad del evento, la vulnerabilidad del lugar y la preparación de sus servicios e infraestructura.</p>
@@ -616,7 +431,7 @@ const topics = [
  </article>`}
 ];
 
-const facts=[
+const facts = [
 "El nombre «El Niño» fue utilizado por pescadores de la costa de Sudamérica para referirse a la aparición de aguas cálidas cerca de Navidad, en alusión al Niño Jesús.",
 "El Niño no es una tormenta ni un fenómeno que ocurre solamente en el Perú: es parte de un patrón climático del océano Pacífico tropical que puede influir en distintas regiones del mundo.",
 "El océano almacena y transporta enormes cantidades de energía. Por eso, los cambios de temperatura del mar pueden influir en la circulación de la atmósfera.",
@@ -624,208 +439,271 @@ const facts=[
 "En el Perú se monitorean tanto las condiciones del Pacífico ecuatorial como las del Pacífico oriental y costero, porque ambas son importantes para comprender los posibles impactos.",
 "Prepararse no significa predecir exactamente cada lluvia. Significa conocer los riesgos locales, atender las alertas y organizarse antes de que ocurra una emergencia."
 ];
+
 const topicBackgrounds = [
- "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1600",
- "https://commons.wikimedia.org/wiki/Special:FilePath/Dolphin_Ocean.jpg?width=1600",
- "https://commons.wikimedia.org/wiki/Special:FilePath/Green-sea-turtle.jpg?width=1600",
- "https://commons.wikimedia.org/wiki/Special:FilePath/Chromis_reef_fish_and_staghorn_coral_underwater_scenic.jpg?width=1600",
- "https://commons.wikimedia.org/wiki/Special:FilePath/Manta_Ray_-_Under.jpg?width=1600",
- "https://commons.wikimedia.org/wiki/Special:FilePath/OCNMS_Sea_Lion_%2849743722337%29.jpg?width=1600",
- "https://commons.wikimedia.org/wiki/Special:FilePath/An_underwater_shot_of_a_reef.jpg?width=1600"
+ "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg?width=1400",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/Dolphin_Ocean.jpg?width=1200",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/Green-sea-turtle.jpg?width=900",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/Chromis_reef_fish_and_staghorn_coral_underwater_scenic.jpg?width=1200",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/Manta_Ray_-_Under.jpg?width=1200",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/OCNMS_Sea_Lion_%2849743722337%29.jpg?width=1200",
+ "https://commons.wikimedia.org/wiki/Special:FilePath/An_underwater_shot_of_a_reef.jpg?width=1200"
 ];
-let factIndex=0,currentTopic=0;
-const grid=document.getElementById('topicGrid');
-topics.forEach((t,i)=>{
- const b=document.createElement('button');b.className='topic-bubble';b.style.setProperty('--topic',t.color);
- b.innerHTML=`<span class="num">0${t.id} / 07</span><span class="topic-icon">${t.icon}</span><strong>${t.title}</strong><small>${t.short}</small>`;
- b.addEventListener('click',()=>openTopic(i));grid.appendChild(b);
+
+let factIndex = 0, currentTopic = 0;
+const grid = document.getElementById('topicGrid');
+topics.forEach((t, i) => {
+ const b = document.createElement('button');
+ b.type = 'button';
+ b.className = 'topic-bubble';
+ b.style.setProperty('--topic', t.color);
+ b.innerHTML = `<span class="num">0${t.id} / 07</span><span class="topic-icon">${t.icon}</span><strong>${t.title}</strong><small>${t.short}</small>`;
+ b.addEventListener('click', () => openTopic(i));
+ grid.appendChild(b);
 });
-function showOnly(id){['welcome','menu','topicScreen'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id));window.scrollTo({top:0,behavior:'smooth'});}
+
+function showOnly(id){
+ ['welcome', 'menu', 'topicScreen'].forEach(x => document.getElementById(x).classList.toggle('hidden', x !== id));
+ window.scrollTo({top: 0, behavior: 'smooth'});
+}
 function goHome(){showOnly('welcome');}
 function showMenu(){showOnly('menu');}
 function openTopic(i){
- currentTopic=i;const t=topics[i];const hero=document.getElementById('topicHero');
- hero.style.setProperty('--topic',t.color);
- hero.style.backgroundImage=`linear-gradient(105deg, color-mix(in srgb, ${t.color} 88%, #071d3b), rgba(7,29,59,.48)), url("${topicBackgrounds[i]}")`;
- hero.style.backgroundPosition='center';
- hero.style.backgroundSize='cover';
- document.getElementById('topicEyebrow').textContent=`SECCIÓN 0${t.id} · 07`;
- document.getElementById('topicTitle').textContent=t.title;
- document.getElementById('topicLead').textContent=t.lead;
- document.getElementById('topicContent').innerHTML=t.content+`<div class="bottom-nav"><button onclick="showMenu()">← Volver a explorar</button><button onclick="openTopic(${(i+1)%topics.length})">Siguiente sección →</button></div>`;
+ currentTopic = i;
+ const t = topics[i];
+ const hero = document.getElementById('topicHero');
+ hero.style.setProperty('--topic', t.color);
+ hero.style.backgroundImage = `linear-gradient(105deg, color-mix(in srgb, ${t.color} 88%, #071d3b), rgba(7,29,59,.52)), url("${topicBackgrounds[i]}")`;
+ hero.style.backgroundPosition = 'center';
+ hero.style.backgroundSize = 'cover';
+ document.getElementById('topicEyebrow').textContent = `SECCIÓN 0${t.id} · 07`;
+ document.getElementById('topicTitle').textContent = t.title;
+ document.getElementById('topicLead').textContent = t.lead;
+ document.getElementById('topicContent').innerHTML = t.content + `<div class="bottom-nav"><button type="button" onclick="showMenu()">← Volver a explorar</button><button type="button" onclick="openTopic(${(i + 1) % topics.length})">Siguiente sección →</button></div>`;
  showOnly('topicScreen');
 }
-function changeFact(dir){factIndex=(factIndex+dir+facts.length)%facts.length;document.getElementById('factText').textContent=facts[factIndex];}
+function changeFact(dir){
+ factIndex = (factIndex + dir + facts.length) % facts.length;
+ document.getElementById('factText').textContent = facts[factIndex];
+}
 changeFact(0);
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
 <script>
 (function(){
- const host=document.getElementById('earthGlobe');
- const canvas=document.getElementById('earthCanvas');
- if(!host||!canvas||!window.THREE)return;
+ const host = document.getElementById('earthGlobe');
+ const canvas = document.getElementById('earthCanvas');
+ if(!host || !canvas || !window.THREE) return;
 
- const scene=new THREE.Scene();
- const camera=new THREE.PerspectiveCamera(34,1,.1,100);
- camera.position.z=3.15;
+ function createFallbackEarthTexture(){
+  const c = document.createElement('canvas');
+  c.width = 1024;
+  c.height = 512;
+  const ctx = c.getContext('2d');
+  const grad = ctx.createLinearGradient(0, 0, 0, c.height);
+  grad.addColorStop(0, '#13497d');
+  grad.addColorStop(0.5, '#1b76b8');
+  grad.addColorStop(1, '#0e3761');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, c.width, c.height);
 
- const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'low-power'});
- renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.6));
- renderer.setClearColor(0x000000,0);
- renderer.outputEncoding=THREE.sRGBEncoding;
- renderer.toneMapping=THREE.ACESFilmicToneMapping;
- renderer.toneMappingExposure=0.92;
+  ctx.fillStyle = '#4ba87a';
+  const blobs = [
+   [180, 140, 95, 55, -0.2],
+   [245, 290, 62, 115, 0.18],
+   [530, 130, 110, 65, 0.1],
+   [565, 275, 75, 95, -0.1],
+   [790, 165, 115, 68, 0.22],
+   [855, 365, 65, 35, 0]
+  ];
+  blobs.forEach(([x, y, rx, ry, rot]) => {
+   ctx.save();
+   ctx.translate(x, y);
+   ctx.rotate(rot);
+   ctx.beginPath();
+   ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+   ctx.fill();
+   ctx.restore();
+  });
 
- const globe=new THREE.Group();
+  const tex = new THREE.CanvasTexture(c);
+  tex.encoding = THREE.sRGBEncoding;
+  return tex;
+ }
+
+ const scene = new THREE.Scene();
+ const camera = new THREE.PerspectiveCamera(34, 1, .1, 100);
+ camera.position.z = 3.15;
+
+ let renderer;
+ try {
+  renderer = new THREE.WebGLRenderer({canvas, alpha: true, antialias: true, powerPreference: 'low-power'});
+ } catch (e) {
+  return;
+ }
+
+ renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
+ renderer.setClearColor(0x000000, 0);
+ renderer.outputEncoding = THREE.sRGBEncoding;
+ renderer.toneMapping = THREE.ACESFilmicToneMapping;
+ renderer.toneMappingExposure = 0.94;
+
+ const globe = new THREE.Group();
  scene.add(globe);
 
- const geometry=new THREE.SphereGeometry(1,96,96);
- const material=new THREE.MeshPhongMaterial({
-   color:0xffffff,
-   shininess:3,
-   specular:new THREE.Color(0x111c28)
+ const geometry = new THREE.SphereGeometry(1, 72, 72);
+ const fallbackMap = createFallbackEarthTexture();
+ const material = new THREE.MeshPhongMaterial({
+  color: 0xffffff,
+  map: fallbackMap,
+  shininess: 3,
+  specular: new THREE.Color(0x111c28)
  });
- const earth=new THREE.Mesh(geometry,material);
+ const earth = new THREE.Mesh(geometry, material);
  globe.add(earth);
 
- // NASA Blue Marble: Next Generation, textura global de topografía y océanos.
- const textureURL='https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-topography/january/world.topo.200401.3x5400x2700.jpg';
- const loader=new THREE.TextureLoader();
+ const textureURL = 'https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-topography/january/world.topo.200401.3x5400x2700.jpg';
+ const loader = new THREE.TextureLoader();
  loader.setCrossOrigin('anonymous');
- loader.load(textureURL,function(texture){
-   texture.encoding=THREE.sRGBEncoding;
-   texture.anisotropy=renderer.capabilities.getMaxAnisotropy();
-   material.map=texture;
-   material.needsUpdate=true;
- },undefined,function(){
-   host.classList.add('earth-texture-error');
+ loader.load(textureURL, function(texture){
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 4);
+  material.map = texture;
+  material.needsUpdate = true;
+ }, undefined, function(){
+  material.map = fallbackMap;
+  material.needsUpdate = true;
  });
 
- // Iluminación cinematográfica más equilibrada:
- // una fuente solar lateral, relleno ambiental bajo y nada de focos frontales.
- scene.add(new THREE.AmbientLight(0x71869a,0.22));
- const sun=new THREE.DirectionalLight(0xffedcf,1.12);
- sun.position.set(-3.8,2.6,4.8);
+ scene.add(new THREE.AmbientLight(0x71869a, 0.25));
+ const sun = new THREE.DirectionalLight(0xffedcf, 1.12);
+ sun.position.set(-3.8, 2.6, 4.8);
  scene.add(sun);
- const skyFill=new THREE.HemisphereLight(0x789bb8,0x101b2b,0.12);
- scene.add(skyFill);
- const blueFill=new THREE.DirectionalLight(0x28618a,0.055);
- blueFill.position.set(3,-1.5,-3);
+ scene.add(new THREE.HemisphereLight(0x789bb8, 0x101b2b, 0.14));
+ const blueFill = new THREE.DirectionalLight(0x28618a, 0.06);
+ blueFill.position.set(3, -1.5, -3);
  scene.add(blueFill);
 
- // Halo atmosférico sutil, separado de la superficie.
- const atmosphereGeo=new THREE.SphereGeometry(1.035,64,64);
- const atmosphereMat=new THREE.ShaderMaterial({
-  vertexShader:'varying vec3 vNormal; varying vec3 vView; void main(){vNormal=normalize(normalMatrix*normal); vec4 mvPosition=modelViewMatrix*vec4(position,1.0); vView=normalize(-mvPosition.xyz); gl_Position=projectionMatrix*mvPosition;}',
-  fragmentShader:'varying vec3 vNormal; varying vec3 vView; void main(){float rim=pow(1.0-max(dot(normalize(vNormal),normalize(vView)),0.0),2.25); gl_FragColor=vec4(0.30,0.62,0.86,rim*0.16);}',
-  blending:THREE.AdditiveBlending,transparent:true,depthWrite:false
+ const atmosphereGeo = new THREE.SphereGeometry(1.035, 48, 48);
+ const atmosphereMat = new THREE.ShaderMaterial({
+  vertexShader: 'varying vec3 vNormal; varying vec3 vView; void main(){vNormal=normalize(normalMatrix*normal); vec4 mvPosition=modelViewMatrix*vec4(position,1.0); vView=normalize(-mvPosition.xyz); gl_Position=projectionMatrix*mvPosition;}',
+  fragmentShader: 'varying vec3 vNormal; varying vec3 vView; void main(){float rim=pow(1.0-max(dot(normalize(vNormal),normalize(vView)),0.0),2.25); gl_FragColor=vec4(0.30,0.62,0.86,rim*0.16);}',
+  blending: THREE.AdditiveBlending, transparent: true, depthWrite: false
  });
- const atmosphere=new THREE.Mesh(atmosphereGeo,atmosphereMat);
- globe.add(atmosphere);
+ globe.add(new THREE.Mesh(atmosphereGeo, atmosphereMat));
 
- // Capa de nubes: gira muy lentamente sobre la superficie, pero acompaña el giro manual.
- const cloudGeo=new THREE.SphereGeometry(1.009,96,96);
- const cloudMat=new THREE.MeshPhongMaterial({
-   color:0xffffff, transparent:true, opacity:0.30,
-   depthWrite:false, shininess:0
+ const cloudGeo = new THREE.SphereGeometry(1.009, 64, 64);
+ const cloudMat = new THREE.MeshPhongMaterial({
+  color: 0xffffff, transparent: true, opacity: 0.28,
+  depthWrite: false, shininess: 0
  });
- const clouds=new THREE.Mesh(cloudGeo,cloudMat);
- clouds.renderOrder=2;
+ const clouds = new THREE.Mesh(cloudGeo, cloudMat);
+ clouds.renderOrder = 2;
  globe.add(clouds);
- loader.load('https://threejs.org/examples/textures/planets/earth_clouds_1024.png',function(texture){
-   texture.encoding=THREE.sRGBEncoding;
-   texture.anisotropy=renderer.capabilities.getMaxAnisotropy();
-   cloudMat.map=texture;
-   cloudMat.needsUpdate=true;
- });
+ loader.load('https://threejs.org/examples/textures/planets/earth_clouds_1024.png', function(texture){
+  texture.encoding = THREE.sRGBEncoding;
+  cloudMat.map = texture;
+  cloudMat.needsUpdate = true;
+ }, undefined, function(){});
 
- // Luces de ciudades en la cara nocturna: se revelan solo donde no llega la luz solar.
- const nightGeo=new THREE.SphereGeometry(1.0025,96,96);
- const nightTextureURL='https://threejs.org/examples/textures/planets/earth_lights_2048.png';
- const nightMat=new THREE.ShaderMaterial({
-   uniforms:{uNightMap:{value:null},uSunDirection:{value:new THREE.Vector3(-0.5,0.4,0.8)}},
-   vertexShader:'varying vec2 vUv; varying vec3 vNormalLocal; void main(){vUv=uv; vNormalLocal=normalize(normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
-   fragmentShader:'uniform sampler2D uNightMap; uniform vec3 uSunDirection; varying vec2 vUv; varying vec3 vNormalLocal; void main(){float day=dot(normalize(vNormalLocal),normalize(uSunDirection)); float night=1.0-smoothstep(-0.12,0.20,day); vec4 lights=texture2D(uNightMap,vUv); float glow=lights.r*night; gl_FragColor=vec4(vec3(1.0,0.66,0.30)*glow,glow*0.82);}',
-   transparent:true, blending:THREE.AdditiveBlending, depthWrite:false
+ const nightGeo = new THREE.SphereGeometry(1.0025, 64, 64);
+ const nightMat = new THREE.ShaderMaterial({
+  uniforms: {uNightMap: {value: null}, uSunDirection: {value: new THREE.Vector3(-0.5, 0.4, 0.8)}},
+  vertexShader: 'varying vec2 vUv; varying vec3 vNormalLocal; void main(){vUv=uv; vNormalLocal=normalize(normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+  fragmentShader: 'uniform sampler2D uNightMap; uniform vec3 uSunDirection; varying vec2 vUv; varying vec3 vNormalLocal; void main(){float day=dot(normalize(vNormalLocal),normalize(uSunDirection)); float night=1.0-smoothstep(-0.12,0.20,day); vec4 lights=texture2D(uNightMap,vUv); float glow=lights.r*night; gl_FragColor=vec4(vec3(1.0,0.66,0.30)*glow,glow*0.82);}',
+  transparent: true, blending: THREE.AdditiveBlending, depthWrite: false
  });
- const nightLights=new THREE.Mesh(nightGeo,nightMat);
- nightLights.renderOrder=1;
+ const nightLights = new THREE.Mesh(nightGeo, nightMat);
+ nightLights.renderOrder = 1;
  globe.add(nightLights);
- loader.load(nightTextureURL,function(texture){
-   texture.encoding=THREE.sRGBEncoding;
-   nightMat.uniforms.uNightMap.value=texture;
-   nightMat.needsUpdate=true;
- });
+ loader.load('https://threejs.org/examples/textures/planets/earth_lights_2048.png', function(texture){
+  texture.encoding = THREE.sRGBEncoding;
+  nightMat.uniforms.uNightMap.value = texture;
+  nightMat.needsUpdate = true;
+ }, undefined, function(){});
 
- // Orientación inicial: el Pacífico y Sudamérica quedan visibles.
- globe.rotation.set(-.12,2.35,0);
+ globe.rotation.set(-.12, 2.35, 0);
 
- let dragging=false,lastX=0,lastY=0,velocityX=0,velocityY=0;
- host.addEventListener('pointerdown',function(e){
-   dragging=true;lastX=e.clientX;lastY=e.clientY;velocityX=velocityY=0;
-   host.setPointerCapture(e.pointerId);
+ let dragging = false, lastX = 0, lastY = 0, velocityX = 0, velocityY = 0, focusTarget = null;
+ host.addEventListener('pointerdown', function(e){
+  dragging = true;
+  focusTarget = null;
+  lastX = e.clientX;
+  lastY = e.clientY;
+  velocityX = velocityY = 0;
+  try { host.setPointerCapture(e.pointerId); } catch (_) {}
  });
- host.addEventListener('pointermove',function(e){
-   if(!dragging)return;
-   const dx=e.clientX-lastX,dy=e.clientY-lastY;
-   velocityX=dx*.006;velocityY=dy*.0045;
-   globe.rotation.y+=velocityX;
-   globe.rotation.x=Math.max(-1.15,Math.min(1.15,globe.rotation.x+velocityY));
-   lastX=e.clientX;lastY=e.clientY;
+ host.addEventListener('pointermove', function(e){
+  if(!dragging) return;
+  const dx = e.clientX - lastX, dy = e.clientY - lastY;
+  velocityX = dx * .0065;
+  velocityY = dy * .005;
+  globe.rotation.y += velocityX;
+  globe.rotation.x = Math.max(-1.15, Math.min(1.15, globe.rotation.x + velocityY));
+  lastX = e.clientX;
+  lastY = e.clientY;
  });
- function stopDrag(){dragging=false}
- host.addEventListener('pointerup',stopDrag);
- host.addEventListener('pointercancel',stopDrag);
- host.addEventListener('lostpointercapture',stopDrag);
+ function stopDrag(e){
+  dragging = false;
+  if(e && typeof e.pointerId === 'number'){
+   try { if(host.hasPointerCapture(e.pointerId)) host.releasePointerCapture(e.pointerId); } catch (_) {}
+  }
+ }
+ host.addEventListener('pointerup', stopDrag);
+ host.addEventListener('pointercancel', stopDrag);
+ host.addEventListener('lostpointercapture', function(){ dragging = false; });
 
- // La etiqueta del Pacífico devuelve suavemente la cámara a la vista inicial.
- const pacificButton=document.getElementById('pacificFocus');
- let focusTarget=null;
+ const pacificButton = document.getElementById('pacificFocus');
  if(pacificButton){
-   pacificButton.addEventListener('click',function(){
-     focusTarget={x:-.12,y:2.35,z:0};
-     velocityX=velocityY=0;
-   });
+  pacificButton.addEventListener('click', function(){
+   dragging = false;
+   focusTarget = {x: -.12, y: 2.35, z: 0};
+   velocityX = velocityY = 0;
+  });
  }
 
  function resize(){
-   const w=Math.max(1,host.clientWidth),h=Math.max(1,host.clientHeight);
-   renderer.setSize(w,h,false);
-   camera.aspect=w/h;
-   camera.updateProjectionMatrix();
+  const w = Math.max(1, host.clientWidth), h = Math.max(1, host.clientHeight);
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
  }
- if('ResizeObserver' in window){new ResizeObserver(resize).observe(host)}else{window.addEventListener('resize',resize)}
+ if('ResizeObserver' in window){
+  new ResizeObserver(resize).observe(host);
+ } else {
+  window.addEventListener('resize', resize);
+ }
  resize();
 
  function animate(){
-   requestAnimationFrame(animate);
-   if(!dragging){
-     if(focusTarget){
-       globe.rotation.x+=(focusTarget.x-globe.rotation.x)*.055;
-       globe.rotation.y+=(focusTarget.y-globe.rotation.y)*.055;
-       globe.rotation.z+=(focusTarget.z-globe.rotation.z)*.055;
-       if(Math.abs(focusTarget.x-globe.rotation.x)<.001 && Math.abs(focusTarget.y-globe.rotation.y)<.001){
-         globe.rotation.set(focusTarget.x,focusTarget.y,focusTarget.z);
-         focusTarget=null;
-       }
-     }else{
-       globe.rotation.y+=velocityX;
-       globe.rotation.x=Math.max(-1.15,Math.min(1.15,globe.rotation.x+velocityY));
-       velocityX*=.94;velocityY*=.94;
-       if(Math.abs(velocityX)<.00008)velocityX=0;
-       if(Math.abs(velocityY)<.00008)velocityY=0;
-     }
+  requestAnimationFrame(animate);
+  if(!dragging){
+   if(focusTarget){
+    globe.rotation.x += (focusTarget.x - globe.rotation.x) * .065;
+    globe.rotation.y += (focusTarget.y - globe.rotation.y) * .065;
+    globe.rotation.z += (focusTarget.z - globe.rotation.z) * .065;
+    if(Math.abs(focusTarget.x - globe.rotation.x) < .001 && Math.abs(focusTarget.y - globe.rotation.y) < .001){
+     globe.rotation.set(focusTarget.x, focusTarget.y, focusTarget.z);
+     focusTarget = null;
+    }
+   } else {
+    globe.rotation.y += velocityX;
+    globe.rotation.x = Math.max(-1.15, Math.min(1.15, globe.rotation.x + velocityY));
+    velocityX *= .94;
+    velocityY *= .94;
+    if(Math.abs(velocityX) < .00008) velocityX = 0;
+    if(Math.abs(velocityY) < .00008) velocityY = 0;
    }
-   clouds.rotation.y+=0.00012;
-   globe.updateMatrixWorld(true);
-   const sunLocal=sun.position.clone().normalize().applyQuaternion(globe.quaternion.clone().invert());
-   nightMat.uniforms.uSunDirection.value.copy(sunLocal);
-   renderer.render(scene,camera);
+  }
+  clouds.rotation.y += 0.00012;
+  globe.updateMatrixWorld(true);
+  const sunLocal = sun.position.clone().normalize().applyQuaternion(globe.quaternion.clone().invert());
+  nightMat.uniforms.uSunDirection.value.copy(sunLocal);
+  renderer.render(scene, camera);
  }
  animate();
 })();
 </script>
-
 </body>
 </html>
